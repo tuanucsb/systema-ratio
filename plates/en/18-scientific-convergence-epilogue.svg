@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 444" role="img" aria-label="Scientific Convergence and Epilogue Bird"><title>Scientific Convergence and Epilogue Bird</title><style>
+  svg { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fb; color: #15172e; }
+  .hd { font-family: 'Fraunces', Georgia, serif; font-weight: 800; }
+  .mn { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+</style><rect x="0" y="0" width="900" height="444" rx="12" fill="var(--bg, #f5f6fb)"/><defs>
+      <marker id="arInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="var(--ink-2, #4a4f6a)"/>
+      </marker>
+      <marker id="arTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0d9488"/>
+      </marker>
+      <marker id="arRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#b81f2e"/>
+      </marker>
+      <marker id="arGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0b7547"/>
+      </marker>
+      <marker id="arBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#2458d3"/>
+      </marker>
+    </defs>
+    <rect x="24" y="20" width="852" height="404" rx="12" fill="var(--surface, #ffffff)" stroke="var(--line, #e1e5f0)"/>
+    <text x="44" y="52" class="hd" font-size="19" font-weight="700" fill="var(--ink, #15172e)">Grand Synthesis: The Scientific Loop (p. 166) &amp; The Bird in Your Hand (p. 171)</text>
+
+    <rect x="52" y="92" width="416" height="36" rx="7" fill="var(--surface-2, #eef1f8)" stroke="#087087" stroke-width="1.6"/><rect x="52" y="92" width="34" height="36" rx="7" fill="#087087"/><text x="69" y="115" text-anchor="middle" class="mn" font-size="11.5" font-weight="800" fill="#ffffff">1</text><text x="98" y="115" font-size="12.5" font-weight="800" fill="var(--ink, #15172e)">Observe</text><text x="456" y="115" text-anchor="end" font-size="11" font-weight="700" fill="#087087">Creative curiosity</text><rect x="52" y="136" width="416" height="36" rx="7" fill="var(--surface-2, #eef1f8)" stroke="#087087" stroke-width="1.6"/><rect x="52" y="136" width="34" height="36" rx="7" fill="#087087"/><text x="69" y="159" text-anchor="middle" class="mn" font-size="11.5" font-weight="800" fill="#ffffff">2</text><text x="98" y="159" font-size="12.5" font-weight="800" fill="var(--ink, #15172e)">Question</text><text x="456" y="159" text-anchor="end" font-size="11" font-weight="700" fill="#087087">Creative + Logical</text><rect x="52" y="180" width="416" height="36" rx="7" fill="var(--surface-2, #eef1f8)" stroke="#bd1e68" stroke-width="1.6"/><rect x="52" y="180" width="34" height="36" rx="7" fill="#bd1e68"/><text x="69" y="203" text-anchor="middle" class="mn" font-size="11.5" font-weight="800" fill="#ffffff">3</text><text x="98" y="203" font-size="12.5" font-weight="800" fill="var(--ink, #15172e)">Hypothesis</text><text x="456" y="203" text-anchor="end" font-size="11" font-weight="700" fill="#bd1e68">Falsifiable! (Popper)</text><rect x="52" y="224" width="416" height="36" rx="7" fill="var(--surface-2, #eef1f8)" stroke="#bd1e68" stroke-width="1.6"/><rect x="52" y="224" width="34" height="36" rx="7" fill="#bd1e68"/><text x="69" y="247" text-anchor="middle" class="mn" font-size="11.5" font-weight="800" fill="#ffffff">4</text><text x="98" y="247" font-size="12.5" font-weight="800" fill="var(--ink, #15172e)">Controlled Test</text><text x="456" y="247" text-anchor="end" font-size="11" font-weight="700" fill="#bd1e68">Aim to REFUTE · Systems/Strat.</text><rect x="52" y="268" width="416" height="36" rx="7" fill="var(--surface-2, #eef1f8)" stroke="#087087" stroke-width="1.6"/><rect x="52" y="268" width="34" height="36" rx="7" fill="#087087"/><text x="69" y="291" text-anchor="middle" class="mn" font-size="11.5" font-weight="800" fill="#ffffff">5</text><text x="98" y="291" font-size="12.5" font-weight="800" fill="var(--ink, #15172e)">Analyze Data</text><text x="456" y="291" text-anchor="end" font-size="11" font-weight="700" fill="#087087">Analytical + Probabilistic</text><rect x="52" y="312" width="416" height="36" rx="7" fill="var(--surface-2, #eef1f8)" stroke="#087087" stroke-width="1.6"/><rect x="52" y="312" width="34" height="36" rx="7" fill="#087087"/><text x="69" y="335" text-anchor="middle" class="mn" font-size="11.5" font-weight="800" fill="#ffffff">6</text><text x="98" y="335" font-size="12.5" font-weight="800" fill="var(--ink, #15172e)">Conclude</text><text x="456" y="335" text-anchor="end" font-size="11" font-weight="700" fill="#087087">If refuted → loop to #3!</text><rect x="52" y="356" width="416" height="36" rx="7" fill="var(--surface-2, #eef1f8)" stroke="#087087" stroke-width="1.6"/><rect x="52" y="356" width="34" height="36" rx="7" fill="#087087"/><text x="69" y="379" text-anchor="middle" class="mn" font-size="11.5" font-weight="800" fill="#ffffff">7</text><text x="98" y="379" font-size="12.5" font-weight="800" fill="var(--ink, #15172e)">Share / Peer Review</text><text x="456" y="379" text-anchor="end" font-size="11" font-weight="700" fill="#087087">Open community critique</text>
+    <!-- Falsification Feedback Loop Arrow (#6 back to #3) -->
+    <path d="M 468,330 L 504,330 L 504,198 L 474,198" fill="none" stroke="#b81f2e" stroke-width="2.2" marker-end="url(#arRed)"/>
+    <text x="512" y="268" font-size="10.5" font-weight="800" fill="#b81f2e" transform="rotate(-90 512 268)">Refuted → Revise!</text>
+
+    <!-- Epilogue Card (Right) -->
+    <rect x="546" y="92" width="308" height="308" rx="12" fill="#0e1022" stroke="#2a2f52" stroke-width="2"/>
+    <text x="700" y="124" text-anchor="middle" class="mn" font-size="10.5" letter-spacing="1.5" fill="#2fc7e6">EPILOGUE · PAGE 171</text>
+    <text x="700" y="152" text-anchor="middle" class="hd" font-size="18" font-weight="700" fill="#f3f4fb">Alive or Dead?</text>
+
+    <g transform="translate(700, 226)">
+      <circle cx="0" cy="-8" r="44" fill="rgba(47,199,230,0.10)" stroke="#2fc7e6" stroke-dasharray="3 3"/>
+      <polygon points="-24,-6 10,-32 4,-2" fill="#2fc7e6"/>
+      <polygon points="4,-2 10,-32 36,-16" fill="#5b8cff"/>
+      <polygon points="-24,-6 4,-2 -10,12" fill="#ffd23f"/>
+      <path d="M -62,28 Q -18,46 34,30 Q 58,22 72,8" fill="none" stroke="#d6daf0" stroke-width="2.6" stroke-linecap="round"/>
+    </g>
+
+    <text x="700" y="298" text-anchor="middle" font-size="12" font-style="italic" fill="#d6daf0">“The book decides nothing for you.</text>
+    <text x="700" y="318" text-anchor="middle" font-size="12" font-style="italic" fill="#d6daf0">Whether the bird lives or dies</text>
+    <text x="700" y="338" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2fc7e6">lies in your hands.”</text>
+    <text x="700" y="374" text-anchor="middle" font-size="11" fill="#8d93b3">Practice thinking → Escape suffering</text>
+    </svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-label="Three Stories of Creative Reframing"><title>Three Stories of Creative Reframing</title><style>
+  svg { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fb; color: #15172e; }
+  .hd { font-family: 'Fraunces', Georgia, serif; font-weight: 800; }
+  .mn { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+</style><rect x="0" y="0" width="900" height="420" rx="12" fill="var(--bg, #f5f6fb)"/><defs>
+      <marker id="arInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="var(--ink-2, #4a4f6a)"/>
+      </marker>
+      <marker id="arTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0d9488"/>
+      </marker>
+      <marker id="arRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#b81f2e"/>
+      </marker>
+      <marker id="arGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0b7547"/>
+      </marker>
+      <marker id="arBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#2458d3"/>
+      </marker>
+    </defs>
+    <rect x="24" y="20" width="852" height="380" rx="12" fill="var(--surface, #ffffff)" stroke="var(--line, #e1e5f0)"/>
+    <text x="44" y="52" class="hd" font-size="19" font-weight="700" fill="var(--ink, #15172e)">Three Stories of Reframing: Breaking Hidden Assumptions (Ch. 2, pp. 27–29)</text>
+
+    <!-- Panel 1: Archimedes -->
+    <rect x="44" y="76" width="264" height="298" rx="10" fill="var(--surface-2, #eef1f8)" stroke="#946200" stroke-width="1.8"/>
+    <text x="62" y="104" font-size="12" font-weight="800" fill="var(--c-creative, #946200)">1 · ARCHIMEDES’ SPHERE</text>
+    <line x1="176" y1="122" x2="176" y2="254" stroke="var(--ink-3, #656b87)" stroke-width="1.8" stroke-dasharray="4 3"/>
+    <circle cx="176" cy="188" r="52" fill="rgba(245,158,11,0.12)" stroke="#946200" stroke-width="2.2"/>
+    <ellipse cx="176" cy="188" rx="52" ry="18" fill="none" stroke="#0d9488" stroke-width="1.8" stroke-dasharray="4 3"/>
+    <ellipse cx="176" cy="188" rx="22" ry="52" fill="none" stroke="#946200" stroke-width="1.6"/>
+    <path d="M 152,126 C 172,114 196,114 202,128" fill="none" stroke="#0d9488" stroke-width="2" marker-end="url(#arTeal)"/>
+    <text x="176" y="282" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink, #15172e)">2D Circle + Rotation = 3D Sphere</text>
+    <text x="176" y="304" text-anchor="middle" font-size="11.5" fill="var(--ink-2, #4a4f6a)">Dynamic generative definition</text>
+    <text x="176" y="344" text-anchor="middle" class="mn" font-size="11.5" fill="var(--c-analytical, #0b7268)">+ Kapitsa: Stillness is motion at v = 0</text>
+
+    <!-- Panel 2: Space Pen vs Writing Tool -->
+    <rect x="328" y="76" width="264" height="298" rx="10" fill="var(--surface-2, #eef1f8)" stroke="#0d9488" stroke-width="1.8"/>
+    <text x="346" y="104" font-size="12" font-weight="800" fill="var(--c-analytical, #0b7268)">2 · ZERO-GRAVITY ORBIT</text>
+    <rect x="348" y="128" width="224" height="58" rx="8" fill="rgba(229,51,63,0.09)" stroke="#b81f2e"/>
+    <text x="460" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="var(--c-trap, #b81f2e)">Narrow Frame: ‘Ballpoint Ink Pen’</text>
+    <text x="460" y="171" text-anchor="middle" font-size="11.5" fill="var(--ink-2, #4a4f6a)">Locks mind inside pressurized ink</text>
+    <line x1="460" y1="190" x2="460" y2="214" stroke="#0d9488" stroke-width="2.2" marker-end="url(#arTeal)"/>
+    <rect x="348" y="220" width="224" height="72" rx="8" fill="rgba(13,148,136,0.12)" stroke="#0d9488" stroke-width="2"/>
+    <text x="460" y="244" text-anchor="middle" font-size="12" font-weight="800" fill="var(--c-analytical, #0b7268)">Wider Frame: ‘Zero-G Writing Tool’</text>
+    <text x="460" y="268" text-anchor="middle" font-size="11.5" fill="var(--ink, #15172e)">Unlocks grease pencils, styluses, dry media</text>
+    <text x="460" y="344" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--ink-2, #4a4f6a)">Never bake an old tool into the question</text>
+
+    <!-- Panel 3: Marshall & Warren Nobel Ulcer Story -->
+    <rect x="612" y="76" width="244" height="298" rx="10" fill="var(--surface-2, #eef1f8)" stroke="#bd1e68" stroke-width="1.8"/>
+    <text x="630" y="104" font-size="12" font-weight="800" fill="var(--c-science, #bd1e68)">3 · NOBEL ULCER DOGMA</text>
+    <!-- Beaker / Flask illustration -->
+    <path d="M 716,132 L 752,132 M 724,132 L 724,162 L 694,220 Q 688,234 704,234 L 764,234 Q 780,234 774,220 L 744,162 L 744,132" fill="rgba(190,24,93,0.12)" stroke="#bd1e68" stroke-width="2.4"/>
+    <path d="M 702,208 Q 734,200 766,208 L 772,222 Q 776,230 764,230 L 704,230 Q 692,230 696,222 Z" fill="#f472b6" opacity="0.55"/>
+    <circle cx="724" cy="218" r="3" fill="#bd1e68"/><circle cx="742" cy="222" r="3" fill="#bd1e68"/><circle cx="734" cy="212" r="2.5" fill="#bd1e68"/>
+    <text x="734" y="264" text-anchor="middle" font-size="12" font-weight="700" fill="var(--c-trap, #b81f2e)">Old Dogma: ‘Acid kills all bacteria’</text>
+    <text x="734" y="288" text-anchor="middle" font-size="11.5" fill="var(--ink, #15172e)">Marshall drank H. pylori culture,</text>
+    <text x="734" y="308" text-anchor="middle" font-size="11.5" fill="var(--ink, #15172e)">got gastritis, cured it with antibiotics!</text>
+    <text x="734" y="344" text-anchor="middle" font-size="12" font-weight="800" fill="var(--c-science, #bd1e68)">2005 Nobel Prize in Medicine</text>
+    </svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-label="Probability Tree and Expected Value"><title>Probability Tree and Expected Value</title><style>
+  svg { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fb; color: #15172e; }
+  .hd { font-family: 'Fraunces', Georgia, serif; font-weight: 800; }
+  .mn { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+</style><rect x="0" y="0" width="900" height="430" rx="12" fill="var(--bg, #f5f6fb)"/><defs>
+      <marker id="arInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="var(--ink-2, #4a4f6a)"/>
+      </marker>
+      <marker id="arTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0d9488"/>
+      </marker>
+      <marker id="arRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#b81f2e"/>
+      </marker>
+      <marker id="arGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0b7547"/>
+      </marker>
+      <marker id="arBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#2458d3"/>
+      </marker>
+    </defs>
+    <rect x="24" y="20" width="852" height="390" rx="12" fill="var(--surface, #ffffff)" stroke="var(--line, #e1e5f0)"/>
+    <text x="44" y="52" class="hd" font-size="19" font-weight="700" fill="var(--ink, #15172e)">Probabilistic Thinking: Investment Tree &amp; Expected Value (pp. 146–152)</text>
+
+    <!-- Root -->
+    <rect x="48" y="224" width="96" height="44" rx="8" fill="#6835f0"/>
+    <text x="96" y="251" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff">Invest</text>
+
+    <!-- Stage 1 -->
+    <line x1="144" y1="240" x2="196" y2="162" stroke="#0b7547" stroke-width="2.4" marker-end="url(#arGreen)"/>
+    <text x="160" y="192" class="mn" font-size="11.5" font-weight="700" fill="var(--c-systems, #0b7547)">0.75</text>
+    <rect x="202" y="145" width="56" height="34" rx="6" fill="rgba(21,128,61,0.14)" stroke="#0b7547" stroke-width="1.8"/>
+    <text x="230" y="167" text-anchor="middle" font-size="12" font-weight="800" fill="var(--c-systems, #0b7547)">Gain</text>
+
+    <line x1="144" y1="252" x2="196" y2="332" stroke="#b81f2e" stroke-width="2.4" marker-end="url(#arRed)"/>
+    <text x="160" y="308" class="mn" font-size="11.5" font-weight="700" fill="var(--c-trap, #b81f2e)">0.25</text>
+    <rect x="202" y="315" width="56" height="34" rx="6" fill="rgba(229,51,63,0.12)" stroke="#b81f2e" stroke-width="1.8"/>
+    <text x="230" y="337" text-anchor="middle" font-size="12" font-weight="800" fill="var(--c-trap, #b81f2e)">Loss</text>
+
+    <line x1="258" y1="162" x2="390" y2="102" stroke="#0b7547" stroke-width="2" marker-end="url(#arInk)"/><text x="322" y="127" text-anchor="middle" class="mn" font-size="11" font-weight="700" fill="#0b7547">0.20</text><rect x="398" y="85" width="106" height="34" rx="6" fill="var(--surface-2, #eef1f8)" stroke="#0b7547" stroke-width="1.6"/><text x="451" y="106" text-anchor="middle" font-size="12" font-weight="700" fill="#0b7547">Gain +5%</text><text x="518" y="106" class="mn" font-size="11.5" fill="var(--ink, #15172e)">(0.75 × 0.20 = 0.150)</text><line x1="258" y1="162" x2="390" y2="162" stroke="#0b7547" stroke-width="2" marker-end="url(#arInk)"/><text x="322" y="157" text-anchor="middle" class="mn" font-size="11" font-weight="700" fill="#0b7547">0.70</text><rect x="398" y="145" width="106" height="34" rx="6" fill="var(--surface-2, #eef1f8)" stroke="#0b7547" stroke-width="1.6"/><text x="451" y="166" text-anchor="middle" font-size="12" font-weight="700" fill="#0b7547">Gain +10%</text><text x="518" y="166" class="mn" font-size="11.5" fill="var(--ink, #15172e)">(0.75 × 0.70 = 0.525)</text><line x1="258" y1="162" x2="390" y2="222" stroke="#0b7547" stroke-width="2" marker-end="url(#arInk)"/><text x="322" y="187" text-anchor="middle" class="mn" font-size="11" font-weight="700" fill="#0b7547">0.10</text><rect x="398" y="205" width="106" height="34" rx="6" fill="var(--surface-2, #eef1f8)" stroke="#0b7547" stroke-width="1.6"/><text x="451" y="226" text-anchor="middle" font-size="12" font-weight="700" fill="#0b7547">Gain +20%</text><text x="518" y="226" class="mn" font-size="11.5" fill="var(--ink, #15172e)">(0.75 × 0.10 = 0.075)</text><line x1="258" y1="332" x2="390" y2="302" stroke="#b81f2e" stroke-width="2" marker-end="url(#arInk)"/><text x="322" y="312" text-anchor="middle" class="mn" font-size="11" font-weight="700" fill="#b81f2e">0.60</text><rect x="398" y="285" width="106" height="34" rx="6" fill="var(--surface-2, #eef1f8)" stroke="#b81f2e" stroke-width="1.6"/><text x="451" y="306" text-anchor="middle" font-size="12" font-weight="700" fill="#b81f2e">Loss −5%</text><text x="518" y="306" class="mn" font-size="11.5" fill="var(--ink, #15172e)">(0.25 × 0.60 = 0.150)</text><line x1="258" y1="332" x2="390" y2="362" stroke="#b81f2e" stroke-width="2" marker-end="url(#arInk)"/><text x="322" y="342" text-anchor="middle" class="mn" font-size="11" font-weight="700" fill="#b81f2e">0.40</text><rect x="398" y="345" width="106" height="34" rx="6" fill="var(--surface-2, #eef1f8)" stroke="#b81f2e" stroke-width="1.6"/><text x="451" y="366" text-anchor="middle" font-size="12" font-weight="700" fill="#b81f2e">Loss −15%</text><text x="518" y="366" class="mn" font-size="11.5" fill="var(--ink, #15172e)">(0.25 × 0.40 = 0.100)</text>
+
+    <!-- Right Summary Card -->
+    <rect x="676" y="88" width="182" height="290" rx="10" fill="var(--surface-2, #eef1f8)" stroke="#6835f0" stroke-width="1.8"/>
+    <text x="767" y="116" text-anchor="middle" font-weight="800" font-size="13" fill="var(--c-prob, #6835f0)">GOLDEN RULES</text>
+    <text x="690" y="144" font-size="11.5" fill="var(--ink, #15172e)">1. Node fan sums = 1.00</text>
+    <text x="690" y="166" font-size="11.5" fill="var(--ink, #15172e)">2. Leaf P = path product</text>
+    <text x="690" y="188" class="mn" font-size="11" font-weight="700" fill="var(--c-systems, #0b7547)">Σ P_leaf = 1.000 ✓</text>
+    <line x1="690" y1="206" x2="844" y2="206" stroke="var(--line-2, #cbd1e1)"/>
+    <text x="690" y="230" font-size="11.5" font-weight="700" fill="var(--ink, #15172e)">Expected Value (Tree):</text>
+    <text x="690" y="252" class="mn" font-size="13" font-weight="800" fill="var(--c-prob, #6835f0)">EV = +5.25%</text>
+    <text x="690" y="280" font-size="11.5" font-weight="700" fill="var(--ink, #15172e)">Table 8.1 Portfolio EV:</text>
+    <text x="690" y="302" class="mn" font-size="13" font-weight="800" fill="var(--c-systems, #0b7547)">EV = +8.00%</text>
+    <text x="690" y="336" font-size="10.5" font-style="italic" fill="var(--c-trap, #b81f2e)">+ Guard against Taleb’s</text>
+    <text x="690" y="352" font-size="10.5" font-style="italic" fill="var(--c-trap, #b81f2e)">  Black Swan tail ruin!</text>
+    </svg>

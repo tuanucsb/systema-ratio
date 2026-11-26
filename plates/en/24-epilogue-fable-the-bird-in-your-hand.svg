@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" role="img" aria-label="Epilogue Fable The Bird in Your Hand"><title>Epilogue Fable The Bird in Your Hand</title><style>
+  svg { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fb; color: #15172e; }
+  .hd { font-family: 'Fraunces', Georgia, serif; font-weight: 800; }
+  .mn { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+</style><rect x="0" y="0" width="900" height="400" rx="12" fill="var(--bg, #f5f6fb)"/><defs>
+      <marker id="arInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="var(--ink-2, #4a4f6a)"/>
+      </marker>
+      <marker id="arTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0d9488"/>
+      </marker>
+      <marker id="arRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#b81f2e"/>
+      </marker>
+      <marker id="arGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0b7547"/>
+      </marker>
+      <marker id="arBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#2458d3"/>
+      </marker>
+    </defs>
+    <rect x="24" y="20" width="852" height="360" rx="14" fill="#0e1022" stroke="#2a2f52" stroke-width="2"/>
+    <text x="450" y="56" text-anchor="middle" class="mn" font-size="11.5" letter-spacing="1.6" fill="#2fc7e6">CLOSING FABLE · PAGE 171 · THE BIRD IN YOUR HAND</text>
+    <text x="450" y="88" text-anchor="middle" class="hd" font-size="22" font-weight="800" fill="#f3f4fb">“Teacher—is the bird in my hands alive or dead?”</text>
+
+    <!-- Left Trap Binary Box -->
+    <rect x="54" y="118" width="248" height="218" rx="10" fill="#1f2342" stroke="#ff5c6a" stroke-width="1.6"/>
+    <text x="178" y="146" text-anchor="middle" font-size="12.5" font-weight="800" fill="#ff7a86">THE BOY’S BINARY TRAP</text>
+    <text x="72" y="180" font-size="12" fill="#d6daf0">• If Teacher says ‘Dead’:</text>
+    <text x="84" y="200" font-size="11.5" fill="#8d93b3">He opens his hands and lets it fly.</text>
+    <text x="72" y="236" font-size="12" fill="#d6daf0">• If Teacher says ‘Alive’:</text>
+    <text x="84" y="256" font-size="11.5" fill="#8d93b3">He crushes it quietly → Dead.</text>
+    <text x="178" y="306" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ff7a86">Rigged ‘Either / Or’ Frame</text>
+
+    <!-- Center Emblem: Open Hands & Rising Bird -->
+    <g transform="translate(450, 224)">
+      <circle cx="0" cy="-10" r="78" fill="rgba(47,199,230,0.08)" stroke="#2fc7e6" stroke-width="1.6" stroke-dasharray="4 4"/>
+      <polygon points="-34,-8 14,-46 6,-2" fill="#2fc7e6"/>
+      <polygon points="6,-2 14,-46 48,-22" fill="#5b8cff"/>
+      <polygon points="-34,-8 6,-2 -14,18" fill="#ffd23f"/>
+      <path d="M -78,36 Q -22,58 42,38 Q 72,28 88,10" fill="none" stroke="#f3f4fb" stroke-width="3" stroke-linecap="round"/>
+      <path d="M -54,44 Q 0,64 62,38" fill="none" stroke="#8d93b3" stroke-width="1.8" stroke-linecap="round"/>
+    </g>
+
+    <!-- Right Reframing Box -->
+    <rect x="598" y="118" width="248" height="218" rx="10" fill="#1f2342" stroke="#2fc7e6" stroke-width="2"/>
+    <text x="722" y="146" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2fc7e6">THE TEACHER’S REFRAMING</text>
+    <text x="722" y="184" text-anchor="middle" font-size="13" font-style="italic" fill="#f3f4fb">“If you want it to live, it lives.</text>
+    <text x="722" y="206" text-anchor="middle" font-size="13" font-style="italic" fill="#f3f4fb">If you want it to die, it dies.</text>
+    <text x="722" y="232" text-anchor="middle" font-size="13.5" font-weight="800" fill="#ffd23f">It lies in your hands.”</text>
+    <line x1="628" y1="254" x2="816" y2="254" stroke="#2a2f52"/>
+    <text x="722" y="280" text-anchor="middle" font-size="11.5" fill="#b3b8d3">“How did you read my mind?”</text>
+    <text x="722" y="304" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2fc7e6">— “Through thinking!”</text>
+    </svg>

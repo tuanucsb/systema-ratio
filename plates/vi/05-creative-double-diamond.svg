@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" role="img" aria-label="Creative Double Diamond"><title>Creative Double Diamond</title><style>
+  svg { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fb; color: #15172e; }
+  .hd { font-family: 'Fraunces', Georgia, serif; font-weight: 800; }
+  .mn { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+</style><rect x="0" y="0" width="900" height="430" rx="12" fill="var(--bg, #f5f6fb)"/><defs>
+      <marker id="arInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="var(--ink-2, #4a4f6a)"/>
+      </marker>
+      <marker id="arTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0d9488"/>
+      </marker>
+      <marker id="arRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#b81f2e"/>
+      </marker>
+      <marker id="arGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0b7547"/>
+      </marker>
+      <marker id="arBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#2458d3"/>
+      </marker>
+    </defs>
+    <rect x="24" y="20" width="852" height="390" rx="12" fill="var(--surface, #ffffff)" stroke="var(--line, #e1e5f0)"/>
+    <text x="44" y="52" class="hd" font-size="19" font-weight="700" fill="var(--ink, #15172e)">Tư duy Sáng tạo: Định nghĩa lại Vấn đề · Phân kỳ Rộng · Hội tụ Sâu</text>
+
+    <!-- Diamond 1: Problem Space -->
+    <polygon points="70,220 230,115 390,220 230,325" fill="rgba(217,119,6,0.10)" stroke="#946200" stroke-width="2.2"/>
+    <line x1="230" y1="115" x2="230" y2="325" stroke="#946200" stroke-dasharray="4 4"/>
+    <text x="230" y="102" text-anchor="middle" font-weight="800" font-size="12.5" fill="var(--c-creative, #946200)">1 · TÁI ĐỊNH NGHĨA VẤN ĐỀ</text>
+    <text x="160" y="205" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--c-trap, #b81f2e)">Đặt hẹp:</text>
+    <text x="160" y="222" text-anchor="middle" font-size="11" fill="var(--ink-2, #4a4f6a)">“Bút mực không trọng lực?”</text>
+    <text x="302" y="205" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--c-systems, #0b7547)">Đặt mở:</text>
+    <text x="302" y="222" text-anchor="middle" font-size="11" fill="var(--ink-2, #4a4f6a)">“Viết không trọng lực?” → Bút chì!</text>
+    <text x="230" y="352" text-anchor="middle" font-size="11" fill="var(--ink-3, #656b87)">Archimedes: Mặt cầu = hình tròn quay · Kapitsa: Đứng yên = chuyển động v=0</text>
+
+    <!-- Diamond 2: Solution Space (Diverge -> Converge) -->
+    <polygon points="430,220 620,105 810,220 620,335" fill="rgba(13,148,136,0.10)" stroke="#0d9488" stroke-width="2.2"/>
+    <line x1="620" y1="105" x2="620" y2="335" stroke="#0d9488" stroke-dasharray="4 4"/>
+    <text x="535" y="96" text-anchor="middle" font-weight="800" font-size="12.5" fill="var(--c-creative, #946200)">2 · PHÂN KỲ (Nghĩ rộng)</text>
+    <text x="715" y="96" text-anchor="middle" font-weight="800" font-size="12.5" fill="var(--c-analytical, #0b7268)">3 · HỘI TỤ (Nghĩ sâu)</text>
+    <text x="530" y="206" text-anchor="middle" font-size="11.5" fill="var(--ink, #15172e)">Trì hoãn mọi phán xét</text>
+    <text x="530" y="225" text-anchor="middle" font-size="11" fill="var(--ink-2, #4a4f6a)">Động não · Sơ đồ tư duy</text>
+    <text x="530" y="242" text-anchor="middle" font-size="11" fill="var(--ink-2, #4a4f6a)">SCAMPER · Sẽ ra sao nếu?</text>
+    <text x="710" y="206" text-anchor="middle" font-size="11.5" fill="var(--ink, #15172e)">Phân tích &amp; Chọn lọc</text>
+    <text x="710" y="225" text-anchor="middle" font-size="11" fill="var(--ink-2, #4a4f6a)">Tính Mới lạ × Tính Phù hợp</text>
+    <text x="710" y="242" text-anchor="middle" font-size="11" font-weight="700" fill="var(--c-analytical, #0b7268)">→ Giải pháp Đột phá Khả thi</text>
+
+    <circle cx="390" cy="220" r="6" fill="#946200"/>
+    <line x1="396" y1="220" x2="424" y2="220" stroke="var(--ink-2, #4a4f6a)" stroke-width="2" marker-end="url(#arInk)"/>
+    <circle cx="810" cy="220" r="7" fill="#0d9488"/>
+    </svg>

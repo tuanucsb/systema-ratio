@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-label="Midnight Taxi Bayes Detective Story"><title>Midnight Taxi Bayes Detective Story</title><style>
+  svg { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fb; color: #15172e; }
+  .hd { font-family: 'Fraunces', Georgia, serif; font-weight: 800; }
+  .mn { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+</style><rect x="0" y="0" width="900" height="420" rx="12" fill="var(--bg, #f5f6fb)"/>
+    <rect x="24" y="20" width="852" height="380" rx="12" fill="var(--surface, #ffffff)" stroke="var(--line, #e1e5f0)"/>
+    <!-- Left Noir Scene -->
+    <rect x="44" y="42" width="376" height="336" rx="10" fill="#0e1022" stroke="#2a2f52" stroke-width="1.6"/>
+    <text x="64" y="72" class="mn" font-size="11.5" font-weight="700" fill="#a07fff">BÀI TOÁN TRINH THÁM CHƯƠNG 8 · TRANG 157</text>
+    <text x="64" y="98" class="hd" font-size="18" font-weight="700" fill="#f3f4fb">Nhân Chứng Đêm Mưa &amp; Chiếc Taxi Gây Tai Nạn</text>
+    <!-- Streetlamp cone of light -->
+    <polygon points="224,118 112,296 336,296" fill="rgba(250,204,21,0.12)"/>
+    <circle cx="224" cy="118" r="8" fill="#fde047"/>
+    <!-- Cab silhouette -->
+    <rect x="168" y="246" width="112" height="34" rx="8" fill="#5b8cff" opacity="0.85"/>
+    <path d="M 186,246 L 202,224 L 250,224 L 266,246 Z" fill="#f43f5e" opacity="0.75"/>
+    <circle cx="192" cy="282" r="10" fill="#b3b8d3"/><circle cx="256" cy="282" r="10" fill="#b3b8d3"/>
+    <text x="224" y="268" text-anchor="middle" class="mn" font-size="11.5" font-weight="800" fill="#0e1022">XANH hay ĐỎ?</text>
+    <text x="64" y="326" font-size="12" fill="#d6daf0">• Thành phố có: 60% Taxi Xanh, 40% Taxi Đỏ (tr. 157)</text>
+    <text x="64" y="348" font-size="12" fill="#b3b8d3">• Nhân chứng nhìn đúng màu 85%, nhìn nhầm 15%</text>
+    <text x="64" y="368" font-size="12" font-weight="700" fill="#ff7a86">Nhân chứng khai: ‘Chiếc xe bỏ chạy màu ĐỎ!’</text>
+
+    <!-- Right Bayes Breakdown -->
+    <rect x="440" y="42" width="414" height="336" rx="10" fill="var(--surface-2, #eef1f8)" stroke="var(--line-2, #cbd1e1)"/>
+    <text x="462" y="74" class="hd" font-size="17" font-weight="700" fill="var(--ink, #15172e)">Câu hỏi Bài tập Sách: Xác suất Xe Thật Là XANH?</text>
+    <rect x="462" y="96" width="370" height="72" rx="8" fill="rgba(16,185,129,0.12)" stroke="#0d9488" stroke-width="1.8"/>
+    <text x="478" y="122" font-size="12.5" font-weight="800" fill="var(--c-analytical, #0b7268)">Nhánh 1: Xe thật là XANH (0,60) × Nhìn nhầm thành ‘Đỏ’ (0,15)</text>
+    <text x="478" y="148" class="mn" font-size="13.5" font-weight="800" fill="var(--ink, #15172e)">0.60 × 0.15 = 0.090 (9.0% of all cases)</text>
+
+    <rect x="462" y="182" width="370" height="72" rx="8" fill="rgba(229,51,63,0.1)" stroke="#b81f2e" stroke-width="1.8"/>
+    <text x="478" y="208" font-size="12.5" font-weight="800" fill="var(--c-trap, #b81f2e)">Nhánh 2: Xe thật là ĐỎ (0,40) × Nhìn đúng là ‘Đỏ’ (0,85)</text>
+    <text x="478" y="234" class="mn" font-size="13.5" font-weight="800" fill="var(--ink, #15172e)">0.40 × 0.85 = 0.340 (34.0% of all cases)</text>
+
+    <rect x="462" y="270" width="370" height="90" rx="8" fill="var(--surface, #ffffff)" stroke="#6835f0" stroke-width="2.2"/>
+    <text x="478" y="296" font-size="12.5" font-weight="700" fill="var(--c-prob, #6835f0)">Định lý Bayes cho Xe Xanh = 0,09 / (0,09 + 0,34):</text>
+    <text x="478" y="324" class="hd" font-size="22" font-weight="800" fill="var(--c-prob, #6835f0)">20,9% là Taxi Xanh  (chứ không phải chỉ 15%!)</text>
+    <text x="478" y="348" font-size="11.5" fill="var(--ink-2, #4a4f6a)">Nếu Taxi Xanh chiếm 85% thành phố (Kahneman), lời khai ‘Đỏ’ sai tới 41%!</text>
+    </svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-label="Dusk Coil and Three Shirt Shops"><title>Dusk Coil and Three Shirt Shops</title><style>
+  svg { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fb; color: #15172e; }
+  .hd { font-family: 'Fraunces', Georgia, serif; font-weight: 800; }
+  .mn { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+</style><rect x="0" y="0" width="900" height="420" rx="12" fill="var(--bg, #f5f6fb)"/><defs>
+      <marker id="arInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="var(--ink-2, #4a4f6a)"/>
+      </marker>
+      <marker id="arTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0d9488"/>
+      </marker>
+      <marker id="arRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#b81f2e"/>
+      </marker>
+      <marker id="arGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0b7547"/>
+      </marker>
+      <marker id="arBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#2458d3"/>
+      </marker>
+    </defs>
+    <rect x="24" y="20" width="852" height="380" rx="12" fill="var(--surface, #ffffff)" stroke="var(--line, #e1e5f0)"/>
+    <!-- Left Scene: Dusk Grass Coil (Survival Reflex) -->
+    <rect x="44" y="42" width="390" height="336" rx="10" fill="#171a33" stroke="#2a2f52" stroke-width="1.5"/>
+    <text x="64" y="72" class="mn" font-size="11.5" font-weight="700" fill="#2fc7e6">CHUYỆN KỂ I · CHƯƠNG 1 (tr. 12)</text>
+    <text x="64" y="98" class="hd" font-size="18" font-weight="700" fill="#f3f4fb">Vật Đen Loằn Ngoằn Trong Bóng Chiều</text>
+    <!-- Moon & grass blades -->
+    <circle cx="384" cy="84" r="20" fill="#fef08a" opacity="0.85"/>
+    <path d="M 60,296 Q 72,250 82,296 M 92,296 Q 100,242 112,296 M 330,296 Q 344,248 354,296 M 364,296 Q 378,255 388,296" fill="none" stroke="#2a2f52" stroke-width="2.2"/>
+    <line x1="56" y1="296" x2="416" y2="296" stroke="#3a4070" stroke-width="2"/>
+    <!-- Coiled rope looking like a viper -->
+    <path d="M 164,282 C 194,256 254,256 270,278 C 284,296 200,300 214,272 C 224,252 276,254 294,264" fill="none" stroke="#ff5c6a" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="297" cy="264" r="4" fill="#fef08a"/>
+    <!-- Jump trajectory arc -->
+    <path d="M 148,268 Q 104,170 76,228" fill="none" stroke="#5b8cff" stroke-width="2.5" stroke-dasharray="5 3" marker-end="url(#arTeal)"/>
+    <text x="72" y="168" font-size="12" font-weight="700" fill="#93a0ff">Hệ thống 1 nhảy vọt sau 0,2 giây!</text>
+    <text x="64" y="330" font-size="12" fill="#b3b8d3">Cứu mạng nơi rừng rậm—thà nhầm dây thừng còn hơn rắn cắn.</text>
+    <text x="64" y="352" font-size="12" font-weight="700" fill="#ff7a86">Nhưng lại sập bẫy ngay giữa phố thị hiện đại →</text>
+
+    <!-- Right Scene: Three Shirt Shops Street (Anchoring Trap p. 15) -->
+    <rect x="456" y="42" width="398" height="336" rx="10" fill="var(--surface-2, #eef1f8)" stroke="var(--line-2, #cbd1e1)"/>
+    <text x="476" y="72" class="mn" font-size="11.5" font-weight="700" fill="var(--c-trap, #b81f2e)">CHUYỆN KỂ II · CHƯƠNG 1 (tr. 15–16)</text>
+    <text x="476" y="98" class="hd" font-size="18" font-weight="700" fill="var(--ink, #15172e)">Ba Cửa Hiệu Áo Sơ-mi &amp; Cái Cọc 1 Triệu</text>
+
+    <!-- 3 Shop awnings -->
+    <rect x="476" y="126" width="112" height="136" rx="8" fill="var(--surface, #ffffff)" stroke="#b81f2e" stroke-width="2"/>
+    <path d="M 476,148 L 588,148" stroke="#b81f2e" stroke-width="2"/>
+    <text x="532" y="142" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--c-trap, #b81f2e)">TIỆM 1 · MỎ NEO</text>
+    <text x="532" y="192" text-anchor="middle" class="hd" font-size="20" font-weight="800" fill="var(--ink, #15172e)">1,000k</text>
+    <text x="532" y="216" text-anchor="middle" font-size="11.5" fill="var(--ink-2, #4a4f6a)">Đóng cọc giá đầu</text>
+    <text x="532" y="242" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--c-trap, #b81f2e)">“Hơi đắt, đi tiếp”</text>
+
+    <rect x="600" y="126" width="112" height="136" rx="8" fill="rgba(229,51,63,0.09)" stroke="#b81f2e" stroke-width="2.4"/>
+    <path d="M 600,148 L 712,148" stroke="#b81f2e" stroke-width="2"/>
+    <text x="656" y="142" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--c-trap, #b81f2e)">TIỆM 2 · SẬP BẪY!</text>
+    <text x="656" y="192" text-anchor="middle" class="hd" font-size="20" font-weight="800" fill="var(--c-trap, #b81f2e)">900k</text>
+    <text x="656" y="216" text-anchor="middle" font-size="11.5" fill="var(--ink, #15172e)">Tưởng rẻ được 100k!</text>
+    <text x="656" y="242" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--c-trap, #b81f2e)">Mua vội ngay!</text>
+
+    <rect x="724" y="126" width="112" height="136" rx="8" fill="rgba(13,148,136,0.1)" stroke="#0d9488" stroke-width="2" stroke-dasharray="5 3"/>
+    <path d="M 724,148 L 836,148" stroke="#0d9488" stroke-width="2"/>
+    <text x="780" y="142" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--c-analytical, #0b7268)">TIỆM 3 · BỎ LỠ</text>
+    <text x="780" y="192" text-anchor="middle" class="hd" font-size="20" font-weight="800" fill="var(--c-analytical, #0b7268)">800k</text>
+    <text x="780" y="216" text-anchor="middle" font-size="11.5" fill="var(--ink-2, #4a4f6a)">Giá chuẩn thị trường</text>
+    <text x="780" y="242" text-anchor="middle" font-size="11.5" font-weight="700" fill="var(--c-analytical, #0b7268)">Chưa kịp bước tới</text>
+
+    <text x="476" y="302" font-size="12.5" font-weight="700" fill="var(--ink, #15172e)">Bài học: Mỏ neo đầu tiên biến cái giá đắt hơn 100 ngàn thành ‘món hời’.</text>
+    <text x="476" y="326" font-size="12" fill="var(--ink-2, #4a4f6a)">Luôn khảo sát mặt bằng độc lập (Chương 4) trước khi tin vào con số đầu tiên.</text>
+    </svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img" aria-label="SCAMPER and Six Thinking Hats"><title>SCAMPER and Six Thinking Hats</title><style>
+  svg { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fb; color: #15172e; }
+  .hd { font-family: 'Fraunces', Georgia, serif; font-weight: 800; }
+  .mn { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+</style><rect x="0" y="0" width="900" height="440" rx="12" fill="var(--bg, #f5f6fb)"/><defs>
+      <marker id="arInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="var(--ink-2, #4a4f6a)"/>
+      </marker>
+      <marker id="arTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0d9488"/>
+      </marker>
+      <marker id="arRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#b81f2e"/>
+      </marker>
+      <marker id="arGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#0b7547"/>
+      </marker>
+      <marker id="arBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,1 L9,5 L0,9 z" fill="#2458d3"/>
+      </marker>
+    </defs>
+    <rect x="24" y="20" width="852" height="400" rx="12" fill="var(--surface, #ffffff)" stroke="var(--line, #e1e5f0)"/>
+    <text x="44" y="52" class="hd" font-size="19" font-weight="700" fill="var(--ink, #15172e)">Structured Creativity: SCAMPER Operators &amp; Six Parallel Thinking Hats</text>
+
+    <!-- Left: SCAMPER + Gio vs Ruoc -->
+    <rect x="44" y="80" width="412" height="316" rx="10" fill="var(--surface-2, #eef1f8)" stroke="var(--line-2, #cbd1e1)"/>
+    <text x="62" y="108" font-weight="800" font-size="14" fill="var(--c-creative, #946200)">SCAMPER · 7 Transformation Prompts (pp. 39–41)</text>
+    <text x="62" y="132" class="mn" font-size="11.5" fill="var(--ink, #15172e)">S · Substitute (Petrol → EV motor)</text>
+    <text x="62" y="152" class="mn" font-size="11.5" fill="var(--ink, #15172e)">C · Combine (Driver + Tour guide)</text>
+    <text x="62" y="172" class="mn" font-size="11.5" fill="var(--ink, #15172e)">A · Adapt  |  M · Modify  |  P · Put to other use</text>
+    <text x="62" y="192" class="mn" font-size="11.5" fill="var(--ink, #15172e)">E · Eliminate (Drop tire inner tube)</text>
+    <text x="62" y="212" class="mn" font-size="11.5" font-weight="700" fill="var(--c-strategic, #b34a00)">R · Rearrange / Reverse (Swap step order!)</text>
+
+    <rect x="62" y="228" width="376" height="150" rx="8" fill="var(--surface, #ffffff)" stroke="#946200" stroke-width="1.5"/>
+    <text x="250" y="251" text-anchor="middle" font-size="12" font-weight="800" fill="var(--c-creative, #946200)">Vietnamese Culinary Proof of &#x27;R&#x27; (Reverse Order, p. 41)</text>
+    <text x="78" y="284" font-size="12" font-weight="700" fill="var(--ink, #15172e)">Pork → [1. Pound raw] → [2. Boil]  =  GIÒ LỤA (Silky sausage)</text>
+    <text x="78" y="320" font-size="12" font-weight="700" fill="var(--c-analytical, #0b7268)">Pork → [1. Boil first] → [2. Pound]  =  RUỐC (Fluffy floss)</text>
+    <text x="250" y="356" text-anchor="middle" font-size="11" font-style="italic" fill="var(--ink-2, #4a4f6a)">Identical ingredients &amp; operations—reversing order creates a new product!</text>
+
+    <!-- Right: 6 Hats -->
+    <text x="480" y="92" font-weight="800" font-size="14" fill="var(--c-critical, #2458d3)">Six Hats · Everyone Wears the SAME Hat Together</text>
+    <rect x="480" y="104" width="182" height="76" rx="9" fill="var(--surface-2, #eef1f8)" stroke="var(--line, #e1e5f0)"/><rect x="490" y="114" width="162" height="24" rx="5" fill="#f3f4fb" stroke="#656b87" stroke-width="0.8"/><text x="571" y="130" text-anchor="middle" font-size="11.5" font-weight="800" fill="#2a2f52">White · Data</text><text x="571" y="159" text-anchor="middle" font-size="11" fill="var(--ink-2, #4a4f6a)">What facts do we know?</text><rect x="675" y="104" width="182" height="76" rx="9" fill="var(--surface-2, #eef1f8)" stroke="var(--line, #e1e5f0)"/><rect x="685" y="114" width="162" height="24" rx="5" fill="#ef4444" stroke="#656b87" stroke-width="0.8"/><text x="766" y="130" text-anchor="middle" font-size="11.5" font-weight="800" fill="#ffffff">Red · Emotion</text><text x="766" y="159" text-anchor="middle" font-size="11" fill="var(--ink-2, #4a4f6a)">What does gut instinct say?</text><rect x="480" y="196" width="182" height="76" rx="9" fill="var(--surface-2, #eef1f8)" stroke="var(--line, #e1e5f0)"/><rect x="490" y="206" width="162" height="24" rx="5" fill="#1f2342" stroke="#656b87" stroke-width="0.8"/><text x="571" y="222" text-anchor="middle" font-size="11.5" font-weight="800" fill="#ffffff">Black · Risk</text><text x="571" y="251" text-anchor="middle" font-size="11" fill="var(--ink-2, #4a4f6a)">What hazards loom?</text><rect x="675" y="196" width="182" height="76" rx="9" fill="var(--surface-2, #eef1f8)" stroke="var(--line, #e1e5f0)"/><rect x="685" y="206" width="162" height="24" rx="5" fill="#facc15" stroke="#656b87" stroke-width="0.8"/><text x="766" y="222" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1f2342">Yellow · Value</text><text x="766" y="251" text-anchor="middle" font-size="11" fill="var(--ink-2, #4a4f6a)">Where is the upside?</text><rect x="480" y="288" width="182" height="76" rx="9" fill="var(--surface-2, #eef1f8)" stroke="var(--line, #e1e5f0)"/><rect x="490" y="298" width="162" height="24" rx="5" fill="#0b7547" stroke="#656b87" stroke-width="0.8"/><text x="571" y="314" text-anchor="middle" font-size="11.5" font-weight="800" fill="#ffffff">Green · Create</text><text x="571" y="343" text-anchor="middle" font-size="11" fill="var(--ink-2, #4a4f6a)">What new options exist?</text><rect x="675" y="288" width="182" height="76" rx="9" fill="var(--surface-2, #eef1f8)" stroke="var(--line, #e1e5f0)"/><rect x="685" y="298" width="162" height="24" rx="5" fill="#2458d3" stroke="#656b87" stroke-width="0.8"/><text x="766" y="314" text-anchor="middle" font-size="11.5" font-weight="800" fill="#ffffff">Blue · Process</text><text x="766" y="343" text-anchor="middle" font-size="11" fill="var(--ink-2, #4a4f6a)">How do we orchestrate?</text>
+    <text x="666" y="392" text-anchor="middle" font-size="11" font-weight="700" fill="var(--c-trap, #b81f2e)">Rule: Parallel thinking—never assign 1 hat per person!</text>
+    </svg>

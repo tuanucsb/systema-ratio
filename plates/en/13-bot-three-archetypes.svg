@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-label="Behavior Over Time Graphs"><title>Behavior Over Time Graphs</title><style>
+  svg { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fb; color: #15172e; }
+  .hd { font-family: 'Fraunces', Georgia, serif; font-weight: 800; }
+  .mn { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; }
+</style><rect x="0" y="0" width="900" height="420" rx="12" fill="var(--bg, #f5f6fb)"/>
+    <rect x="24" y="20" width="852" height="380" rx="12" fill="var(--surface, #ffffff)" stroke="var(--line, #e1e5f0)"/>
+    <text x="44" y="52" class="hd" font-size="19" font-weight="700" fill="var(--ink, #15172e)">Behavior Over Time (BOT): Three Signature Dynamic Regimes (pp. 120–123)</text>
+
+    <!-- 1. S-Curve -->
+    <rect x="44" y="80" width="258" height="292" rx="10" fill="var(--surface-2, #eef1f8)" stroke="var(--line, #e1e5f0)"/>
+    <text x="60" y="106" font-weight="800" font-size="13" fill="var(--c-analytical, #0b7268)">1 · Logistic S-Curve</text>
+    <line x1="68" y1="142" x2="278" y2="142" stroke="#b81f2e" stroke-width="1.4" stroke-dasharray="4 3"/>
+    <line x1="68" y1="278" x2="280" y2="278" stroke="var(--ink-3, #656b87)" stroke-width="1.5"/>
+    <line x1="68" y1="128" x2="68" y2="278" stroke="var(--ink-3, #656b87)" stroke-width="1.5"/>
+    <path d="M 72,270 C 135,268 155,235 174,205 C 193,175 215,145 276,144" fill="none" stroke="#0d9488" stroke-width="3"/>
+    <circle cx="174" cy="205" r="5" fill="#946200"/>
+    <text x="174" y="193" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--c-creative, #946200)">Inflection</text>
+    <text x="60" y="308" font-size="11" fill="var(--ink, #15172e)">Phase 1: R dominates (takeoff)</text>
+    <text x="60" y="326" font-size="11" fill="var(--ink, #15172e)">Phase 2: B dominates (saturation)</text>
+    <text x="60" y="350" font-size="10.5" fill="var(--ink-3, #656b87)">Ex: Product adoption, viral spread</text>
+
+    <!-- 2. Delayed Oscillation -->
+    <rect x="321" y="80" width="258" height="292" rx="10" fill="var(--surface-2, #eef1f8)" stroke="var(--line, #e1e5f0)"/>
+    <text x="337" y="106" font-weight="800" font-size="13" fill="var(--c-critical, #2458d3)">2 · Delayed Oscillation</text>
+    <line x1="345" y1="205" x2="555" y2="205" stroke="#b81f2e" stroke-width="1.4" stroke-dasharray="4 3"/>
+    <line x1="345" y1="278" x2="557" y2="278" stroke="var(--ink-3, #656b87)" stroke-width="1.5"/>
+    <line x1="345" y1="128" x2="345" y2="278" stroke="var(--ink-3, #656b87)" stroke-width="1.5"/>
+    <path d="M 348,248 Q 378,132 408,205 T 468,205 T 528,205 L 552,165" fill="none" stroke="#2458d3" stroke-width="3"/>
+    <text x="337" y="308" font-size="11" fill="var(--ink, #15172e)">Balancing loop B + Time Delay (//)</text>
+    <text x="337" y="326" font-size="11" font-weight="700" fill="var(--c-critical, #2458d3)">Fix: Shorten feedback delay τ!</text>
+    <text x="337" y="350" font-size="10.5" fill="var(--ink-3, #656b87)">Ex: Business &amp; inventory cycles</text>
+
+    <!-- 3. Runaway Exponential -->
+    <rect x="598" y="80" width="258" height="292" rx="10" fill="var(--surface-2, #eef1f8)" stroke="var(--line, #e1e5f0)"/>
+    <text x="614" y="106" font-weight="800" font-size="13" fill="var(--c-trap, #b81f2e)">3 · Unchecked Runaway</text>
+    <line x1="622" y1="278" x2="834" y2="278" stroke="var(--ink-3, #656b87)" stroke-width="1.5"/>
+    <line x1="622" y1="128" x2="622" y2="278" stroke="var(--ink-3, #656b87)" stroke-width="1.5"/>
+    <path d="M 626,272 C 695,270 755,252 818,134" fill="none" stroke="#b81f2e" stroke-width="3"/>
+    <text x="614" y="308" font-size="11" fill="var(--ink, #15172e)">Pure Reinforcing loop R unchecked</text>
+    <text x="614" y="326" font-size="11" font-weight="700" fill="var(--c-trap, #b81f2e)">Fix: Intervene early to cap R!</text>
+    <text x="614" y="350" font-size="10.5" fill="var(--ink-3, #656b87)">Ex: Contagious bank-run panic</text>
+    </svg>
