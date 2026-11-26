@@ -637,9 +637,12 @@ body:not(.teach-mode) .teach-only { display: none !important; }
 
 .mobile-bottom-nav { display: none; }
 .lang-lbl-short { display: none; }
-@media (max-width: 1640px) {
-  .brand-sub, .teach-lbl-long { display: none; }
+@media (max-width: 1520px) {
+  .teach-lbl-long { display: none; }
   .nav-link { padding: 7px 10px; font-size: 13px; }
+}
+@media (max-width: 1340px) {
+  .brand-sub { display: none; }
 }
 @media (max-width: 1220px) {
   .site-nav { display: none; }
@@ -785,6 +788,8 @@ body:not(.teach-mode) .teach-only { display: none !important; }
   padding: 28px;
   margin-block-end: 28px;
   box-shadow: var(--shadow);
+  max-inline-size: 100%;
+  min-inline-size: 0;
 }
 @media (max-width: 680px) {
   .sec-card { padding: 18px; margin-block-end: 20px; }
@@ -801,7 +806,7 @@ body:not(.teach-mode) .teach-only { display: none !important; }
   margin-block-end: 34px;
 }
 @media (max-width: 1024px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 }
 .hero-title {
   font-size: clamp(2.35rem, 4.6vw, 3.85rem);
@@ -940,7 +945,7 @@ body:not(.teach-mode) .teach-only { display: none !important; }
   margin-block-start: 18px;
 }
 @media (max-width: 980px) {
-  .scrolly-layout { grid-template-columns: 1fr; }
+  .scrolly-layout { grid-template-columns: minmax(0, 1fr); }
 }
 .scrolly-steps {
   display: grid;
@@ -1130,6 +1135,163 @@ body:not(.teach-mode) .teach-only { display: none !important; }
   background: color-mix(in oklab, var(--cc, var(--accent)) 9%, var(--surface-2));
   border: 1px solid color-mix(in oklab, var(--cc, var(--accent)) 32%, var(--line));
   font-size: 13.5px;
+}
+.case-meta-dl {
+  margin: 0 0 12px;
+  display: grid;
+  gap: 8px;
+}
+.case-meta-row {
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  border: 1px solid var(--line-2);
+  font-size: 13.5px;
+}
+.case-meta-row.case-result-row {
+  background: color-mix(in oklab, var(--c-systems) 7%, var(--surface-2));
+  border-color: color-mix(in oklab, var(--c-systems) 30%, var(--line));
+}
+.case-meta-row dt {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--cc, var(--accent));
+  margin-block-end: 3px;
+}
+.case-meta-row.case-result-row dt {
+  color: var(--c-systems);
+}
+.case-meta-row dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.48;
+}
+
+/* Book Attribution Banner & 3-Part Roadmap */
+.book-author-banner {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 8px 14px;
+  margin-block-end: 12px;
+  border-radius: var(--r-md);
+  background: color-mix(in oklab, var(--accent) 9%, var(--surface));
+  border: 1.5px solid color-mix(in oklab, var(--accent) 36%, var(--line));
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.book-parts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 12px;
+  margin-block-start: 14px;
+}
+.book-part-card {
+  padding: 15px 16px;
+  border-radius: var(--r-md);
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+}
+
+/* Deep-Dive Book Sub-Method Accordion (`mwg` `accordion` compliant) */
+.method-accordion {
+  display: grid;
+  gap: 10px;
+  margin-block: 10px 18px;
+}
+.method-acc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+[command="--toggle-all"][aria-expanded="true"] .expand,
+[command="--toggle-all"][aria-expanded="false"] .collapse {
+  display: none;
+}
+details.method-detail {
+  background: var(--bg);
+  border: 1.5px solid var(--line-2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+details.method-detail[open] {
+  background: var(--surface);
+  border-color: color-mix(in oklab, var(--mc-col, var(--accent)) 52%, var(--line));
+}
+details.method-detail > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  min-block-size: 46px;
+  cursor: pointer;
+  font-family: var(--kicker);
+  font-weight: 700;
+  font-size: 15.5px;
+  color: var(--ink);
+  background: var(--surface-2);
+}
+details.method-detail > summary::-webkit-details-marker {
+  display: none;
+}
+details.method-detail > summary:hover {
+  background: var(--surface-3);
+}
+details.method-detail > summary::before {
+  content: "▾";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.1em;
+  block-size: 1.1em;
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--mc-col, var(--accent));
+  rotate: -90deg;
+}
+details.method-detail[open] > summary::before {
+  rotate: 0deg;
+}
+@media (prefers-reduced-motion: no-preference) {
+  details.method-detail > summary::before {
+    transition: rotate 0.2s ease;
+  }
+}
+details.method-detail::details-content {
+  interpolate-size: allow-keywords;
+  overflow: clip;
+  contain: layout;
+}
+details.method-detail:not([open])::details-content {
+  block-size: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  details.method-detail::details-content {
+    transition: block-size 0.24s ease-in-out, content-visibility 0.24s ease-in-out, display 0.24s ease-in-out;
+    transition-behavior: allow-discrete;
+  }
+}
+.method-detail-body {
+  padding: 16px 18px;
+  display: grid;
+  gap: 10px;
+  font-size: 14.5px;
+  border-block-start: 1px solid var(--line);
+}
+.book-example-callout {
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+  background: color-mix(in oklab, var(--mc-col, var(--accent)) 8%, var(--surface-2));
+  border: 1px solid color-mix(in oklab, var(--mc-col, var(--accent)) 32%, var(--line));
+  font-size: 14px;
 }
 
 /* Cold-Open 15-Second Mirror Traps */

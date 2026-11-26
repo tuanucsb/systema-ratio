@@ -7,6 +7,7 @@ from src.template_css import APP_CSS
 from src.data_story import MIRROR_TRAPS, BOOK_TOURS, SAGA_BEATS, MINH_ARC, SHORT_NODE_NAMES
 from src.data_library import STORIES_ANTHOLOGY, DILEMMA_ROULETTE, BOOKS_LIBRARY
 from src.data_cases import CASE_CATEGORIES, CASES_VAULT
+from src.data_book_elaborations import BOOK_AUTHOR_META, BOOK_ELABORATIONS
 
 
 def pq(s: str) -> str:
@@ -231,6 +232,8 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
             "domain": cs["domain_en"] if en else cs["domain_vi"],
             "title": cs["title_en"] if en else cs["title_vi"],
             "story": cs["story_en"] if en else cs["story_vi"],
+            "methods": cs["methods_en"] if en else cs["methods_vi"],
+            "result": cs["result_en"] if en else cs["result_vi"],
             "lesson": cs["lesson_en"] if en else cs["lesson_vi"],
             "url": cs["url"],
             "src_label": cs["src_label"],
@@ -246,7 +249,7 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
         c_info = js_chapters[cs["ch"]]
         data_attrs = ""
         if with_filters:
-            q_blob = f'{cs["title"]} {cs["story"]} {cs["lesson"]} {cs["domain"]} {cs["year"]}'.lower()
+            q_blob = f'{cs["title"]} {cs["story"]} {cs["methods"]} {cs["result"]} {cs["lesson"]} {cs["domain"]} {cs["year"]}'.lower()
             data_attrs = (
                 f' data-caseid="{esc_raw(cs["id"])}"'
                 f' data-ch="{esc_raw(cs["ch"])}"'
@@ -254,6 +257,8 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
                 f' data-search="{esc_raw(q_blob)}"'
             )
         lab_target = cs["lab"]
+        lbl_methods = T("Method(s) Used (Đào Minh Châu’s Book)", "Phương pháp Tư duy Áp dụng (Theo Sách)")
+        lbl_result = T("Concrete Result & Outcome", "Kết quả Thực tế")
         lbl_takeaway = T("Conscious Takeaway:", "Bài học Tư duy:")
         lbl_try = T("Try Lab / Tool →", "Thử Công cụ →")
         return (
@@ -266,6 +271,10 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
             f'</div>'
             f'<{h_tag} class="hd" style="font-size:19px;font-weight:750;line-height:1.2;margin-block-end:8px;">{esc(cs["title"])}</{h_tag}>'
             f'<p style="font-size:14.5px;color:var(--ink-2);margin-block-end:12px;">{esc(cs["story"])}</p>'
+            f'<dl class="case-meta-dl">'
+            f'<div class="case-meta-row"><dt>{esc(lbl_methods)}</dt><dd>{esc(cs["methods"])}</dd></div>'
+            f'<div class="case-meta-row case-result-row"><dt>{esc(lbl_result)}</dt><dd>{esc(cs["result"])}</dd></div>'
+            f'</dl>'
             f'<div class="case-lesson-box">'
             f'<strong style="color:{c_info["color"]};">{esc(lbl_takeaway)}</strong> {esc(cs["lesson"])}'
             f'</div>'
@@ -293,20 +302,33 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
             f'{esc(cat_lbl)}</button>'
         )
 
+    book_meta = BOOK_AUTHOR_META[lang]
+    book_parts_cards_html = "".join(
+        f'<div class="book-part-card">'
+        f'<div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px;margin-block-end:4px;">'
+        f'<strong style="font-size:14.5px;color:var(--ink);">{esc(pt_title)}</strong>'
+        f'<span class="badge-mini">{esc(pt_pages)}</span>'
+        f'</div>'
+        f'<p style="font-size:13.5px;color:var(--ink-2);">{esc(pt_desc)}</p>'
+        f'</div>'
+        for pt_title, pt_pages, pt_desc in book_meta["parts_breakdown"]
+    )
+
     hero_ray_pills_html = ""
     scrolly_steps_html = ""
     scrolly_beams_html = ""
     js_scrolly = []
-    lbl_flash = T("Real-World Flashpoint:", "Điểm nóng Thực chiến:")
-    lbl_4cases = T("4 Chapter Cases →", "4 Hồ sơ Thực tế →")
+    lbl_4cases = T("4 Case Studies →", "4 Hồ sơ Thực tế →")
     lbl_openlab = T("Open Lab →", "Mở Mô phỏng →")
-    lbl_readch = T("Read Ch.", "Đọc Ch.")
+    lbl_readch = T("Elaborate Method · Ch.", "Đọc sâu Phương pháp · Ch.")
 
     for i, c in enumerate(chapters):
         cid = c["id"]
         c_col = c["color"]
+        ch_elab = BOOK_ELABORATIONS[cid][lang]
+        bk_spot = ch_elab["book_spotlight_example"]
         hero_ray_pills_html += (
-            f'<button type="button" class="ray-chip" style="--rc:{c_col}" onclick="jumpToScrollyChapter({i})">'
+            f'<button type="button" class="ray-chip" style="--rc:{c_col}" onclick="switchView(\'reader\', \'{cid}\', true)">'
             f'<span style="width:8px;height:8px;border-radius:50%;background:{c_col};" aria-hidden="true"></span>'
             f'<span>{c["num"]} · {esc(c["title"])}</span></button>'
         )
@@ -318,16 +340,15 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
         lead_lab = lead_cs["lab"]
         scrolly_steps_html += (
             f'<article class="scrolly-step{act_cls}" id="sc-step-{cid}" data-scidx="{i}" style="--sc-col:{c_col}" onclick="selectScrollyStep({i})">'
-            f'<span class="eyebrow" style="color:{c_col};margin-block-end:4px;">Ch. {c["num"]} · {esc(c["role_tag"])} · {esc(c["pages"])}</span>'
+            f'<span class="eyebrow" style="color:{c_col};margin-block-end:4px;">{esc(c["part_name"])} · Ch. {c["num"]} · {esc(c["pages"])}</span>'
             f'<h3 class="hd" style="font-size:22px;font-weight:800;margin-block-end:6px;">{c["num"]}. {esc(c["title"])}</h3>'
             f'<blockquote class="scrolly-quote">“{esc(txt_q)}” '
             f'<span style="font-style:normal;font-family:var(--kicker);font-size:13px;font-weight:700;color:var(--ink-2);">· {esc(au_q)}</span></blockquote>'
-            f'<p style="font-size:14.5px;color:var(--ink-2);margin-block-end:12px;">'
-            f'<strong style="color:{c_col};">{esc(lbl_flash)}</strong> {esc(lead_cs["title"])} ({esc(lead_cs["year"])})</p>'
+            f'<p style="font-size:14.5px;color:var(--ink-2);margin-block-end:12px;">{esc(ch_elab["lead_summary"])}</p>'
             f'<div style="display:flex;gap:8px;flex-wrap:wrap;">'
-            f'<button type="button" class="tool-pill" onclick="event.stopPropagation();switchView(\'cases\', \'{cid}\', true)">{esc(lbl_4cases)}</button>'
-            f'<button type="button" class="tool-pill" onclick="event.stopPropagation();jumpTarget(\'{esc_raw(lead_lab)}\')">{esc(lbl_openlab)}</button>'
             f'<button type="button" class="tool-pill" onclick="event.stopPropagation();switchView(\'reader\', \'{cid}\', true)">{esc(lbl_readch)} {c["num"]} →</button>'
+            f'<button type="button" class="tool-pill" onclick="event.stopPropagation();jumpTarget(\'{esc_raw(lead_lab)}\')">{esc(lbl_openlab)}</button>'
+            f'<button type="button" class="tool-pill" onclick="event.stopPropagation();switchView(\'cases\', \'{cid}\', true)">{esc(lbl_4cases)}</button>'
             f'</div></article>'
         )
         scrolly_beams_html += (
@@ -346,10 +367,9 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
             "minh_age": m_arc["age"],
             "minh_head": m_arc["headline"],
             "minh_story": m_arc["story"],
-            "case_title": lead_cs["title"],
-            "case_story": lead_cs["story"],
-            "case_url": lead_cs["url"],
-            "case_src": lead_cs["src_label"],
+            "book_ex_title": bk_spot["title"],
+            "book_ex_body": bk_spot["body"],
+            "book_ex_takeaway": bk_spot["takeaway"],
             "lab": lead_lab,
         })
 
@@ -591,32 +611,63 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
         ch_books_html = "".join(render_book_card(bk) for bk in ch_books)
         ch_cases_html = "".join(render_case_card(cs, h_tag="h4") for cs in cases_by_ch.get(cid, []))
 
+        ch_elab = BOOK_ELABORATIONS[cid][lang]
+        deep_elab_html = "".join(
+            f'<p style="font-size:15px;color:var(--ink-2);margin-block-end:12px;">{esc(para)}</p>'
+            for para in ch_elab["deep_elaboration"]
+        )
+        sub_methods_html = ""
+        for sm in ch_elab["sub_methods"]:
+            sub_methods_html += (
+                f'<details class="method-detail" open style="--mc-col:{c["color"]}">'
+                f'<summary><span style="flex:1;">{esc(sm["name"])}</span>'
+                f'<span class="badge-mini">{esc(sm["pages"])}</span></summary>'
+                f'<div class="method-detail-body">'
+                f'<p style="color:var(--ink);">{esc(sm["desc"])}</p>'
+                f'<p style="color:var(--ink-2);"><strong>{esc(T("How It Works / Protocol:", "Quy trình & Nguyên tắc Thực hiện:"))}</strong> {esc(sm["steps"])}</p>'
+                f'<div class="book-example-callout">'
+                f'<strong style="color:{c["color"]};">{esc(T("Original Example from Đào Minh Châu’s Book:", "Ví dụ Minh họa Nguyên bản Trong Sách Đào Minh Châu:"))}</strong> '
+                f'{esc(sm["book_example"])}'
+                f'</div>'
+                f'</div></details>'
+            )
+
         chapters_panes += (
             f'<article class="sec-card ch-pane" id="pane-{cid}"{hid} style="border-block-start:4px solid {c["color"]};">'
-            f'<span class="eyebrow">{esc(c["part_name"])} · {esc(c["pages"])} · {esc(c["role_tag"])}</span>'
+            f'<span class="eyebrow">{esc(T("Book: Học Tư Duy · By Đào Minh Châu", "Sách Học Tư Duy · Tác giả Đào Minh Châu"))} · {esc(c["part_name"])} · {esc(c["pages"])}</span>'
             f'<h2 id="heading-{cid}" tabindex="-1" style="font-size:28px;margin-block-end:6px;">{c["num"]}. {esc(c["title"])}</h2>'
-            f'<p style="font-size:14.5px;color:var(--ink-3);margin-block-end:16px;">{esc(T("Visual Metaphor:", "Ẩn dụ trực quan:"))} <strong>{esc(c["metaphor"])}</strong></p>'
-            f'{minh_box}'
+            f'<p style="font-size:14.5px;color:var(--ink-3);margin-block-end:16px;">{esc(T("Role in the Book:", "Vai trò trong hệ thống:"))} <strong>{esc(c["role_tag"])}</strong> · {esc(T("Visual Metaphor:", "Ẩn dụ trực quan:"))} <strong>{esc(c["metaphor"])}</strong></p>'
             f'<div style="margin-block-end:18px;">{q_html}</div>'
             f'<div class="plate-svg-wrap" style="margin-block-end:20px;">{ch_svg}</div>'
-            f'<h3 style="font-size:18px;margin-block:18px 6px;">1 · {esc(T("Core Concept", "Khái niệm Cốt lõi"))}</h3>'
-            f'<p style="font-size:15.5px;margin-block-end:14px;">{esc(c["concept"])}</p>'
-            f'<h3 style="font-size:18px;margin-block:18px 6px;">2 · {esc(T("Guiding Principles", "Nguyên lý Dẫn dắt"))}</h3>'
-            f'<ul style="padding-inline-start:20px;margin-block:0 14px;">{pr_html}</ul>'
+            f'<h3 style="font-size:19px;margin-block:18px 8px;">1 · {esc(T("Core Definition & Deep Elaboration from Đào Minh Châu’s Book", "Định nghĩa Cốt lõi & Diễn giải Chuyên sâu Từ Sách Học Tư Duy"))}</h3>'
+            f'<p style="font-size:15.5px;font-weight:600;color:var(--ink);margin-block-end:12px;">{esc(c["concept"])}</p>'
+            f'{deep_elab_html}'
+            f'<h3 style="font-size:19px;margin-block:20px 8px;">2 · {esc(T("Guiding Principles in the Manuscript", "Các Nguyên lý Dẫn dắt Trong Sách"))}</h3>'
+            f'<ul style="padding-inline-start:20px;margin-block:0 16px;">{pr_html}</ul>'
+            f'<section class="method-accordion" id="acc-{cid}" aria-labelledby="subm-hd-{cid}">'
+            f'<div class="method-acc-head">'
+            f'<h3 id="subm-hd-{cid}" style="font-size:19px;margin:0;color:{c["color"]};">3 · {esc(T("Detailed Breakdown of Methods, Frameworks & Book Examples", "Chi Tiết Từng Công Cụ, Quy Trình & Ví Dụ Nguyên Bản Trong Sách"))}</h3>'
+            f'<button type="button" class="tool-pill" commandfor="acc-{cid}" command="--toggle-all" aria-expanded="true">'
+            f'<span class="expand">{esc(T("Expand all", "Mở tất cả"))}</span>'
+            f'<span class="collapse">{esc(T("Collapse all", "Thu gọn tất cả"))}</span>'
+            f'</button>'
+            f'</div>'
+            f'{sub_methods_html}'
+            f'</section>'
             f'{extra_svg_box}'
-            f'<h3 style="font-size:18px;margin-block:18px 8px;">3 · {esc(T("Practical Tools (Click to Inspect)", "Công cụ Thực hành (Nhấn để xem chi tiết)"))}</h3>'
+            f'<h3 style="font-size:18px;margin-block:18px 8px;">4 · {esc(T("Quick-Reference Tool Dossiers (Click Any Tool)", "Hồ sơ Tra cứu Nhanh Công cụ (Nhấn để mở chi tiết)"))}</h3>'
             f'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-block-end:16px;">{ch_tools_chips}</div>'
-            f'<h3 style="font-size:18px;margin-block:18px 6px;color:var(--c-trap);">4 · {esc(T("Common Traps & Barriers", "Các Lỗi Phổ biến & Rào cản"))}</h3>'
+            f'{minh_box}'
+            f'<h3 style="font-size:18px;margin-block:18px 6px;color:var(--c-trap);">5 · {esc(T("Common Traps & Cognitive Barriers", "Các Lỗi Phổ biến & Rào cản Tư duy"))}</h3>'
             f'<ul style="padding-inline-start:20px;margin-block:0 14px;">{tr_html}</ul>'
-            f'<h3 style="font-size:18px;margin-block:18px 6px;">5 · {esc(T("Practice Exercises", "Bài tập Rèn luyện"))}</h3>'
+            f'<h3 style="font-size:18px;margin-block:18px 6px;">6 · {esc(T("Practice Exercises from the Book", "Bài tập Rèn luyện Cuối Chương"))}</h3>'
             f'<ol style="padding-inline-start:20px;margin-block:0 14px;">{ex_html}</ol>'
-            f'<h3 style="font-size:18px;margin-block:18px 6px;">6 · {esc(T("Chapter Synthesis", "Kết luận Chương"))}</h3>'
+            f'<h3 style="font-size:18px;margin-block:18px 6px;">7 · {esc(T("Chapter Conclusion & Suggested Books", "Kết luận Chương & Sách Đọc Thêm Của Tác Giả"))}</h3>'
             f'<p style="font-size:15px;font-weight:600;padding:14px 16px;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;margin-block-end:14px;">{esc(c["synthesis"])}</p>'
-            f'<h3 style="font-size:18px;margin-block:22px 10px;color:{c["color"]};">7 · {esc(T("Real-World Case Studies & Linked Dossiers (4 Cases)", "Hồ Sơ Tình Huống Thực Chiến & Tài Liệu Gốc (4 Vụ Việc)"))}</h3>'
-            f'<div class="cases-grid" style="margin-block-end:18px;">{ch_cases_html}</div>'
-            f'<h3 style="font-size:18px;margin-block:18px 8px;">8 · {esc(T("Suggested Books & Classic Companions (Click to Explore)", "Tủ Sách Đọc Thêm Gợi Ý (Nhấn để Tra cứu Sách)"))}</h3>'
-            f'<div class="books-grid" style="margin-block-end:12px;">{ch_books_html}</div>'
+            f'<div class="books-grid" style="margin-block-end:16px;">{ch_books_html}</div>'
             f'<div class="teach-only teach-callout"><strong>{esc(T("Educator Subject-Teaching Prompt:", "Gợi ý Giảng dạy Lồng ghép Môn học:"))}</strong> {esc(c["educator_note"])}</div>'
+            f'<h3 style="font-size:18px;margin-block:24px 10px;color:{c["color"]};">8 · {esc(T("Applied Real-World Case Studies (Methods Used & Concrete Results)", "Hồ Sơ Tình Huống Thực Chiến (Phương Pháp Áp Dụng & Kết Quả Thực Tế)"))}</h3>'
+            f'<div class="cases-grid" style="margin-block-end:18px;">{ch_cases_html}</div>'
             f'<div class="ch-nav-footer">{prev_btn}{next_btn}</div>'
             f'</article>'
         )
@@ -680,12 +731,12 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
     ic_layers = icon_html("layers")
     ic_book = icon_html("book")
 
-    mob_lbl_overview = esc(T("Story", "Truyện"))
-    mob_lbl_cases = esc(T("36 Cases", "36 Hồ sơ"))
+    mob_lbl_overview = esc(T("Book", "Sách"))
+    mob_lbl_reader = esc(T("Methods", "Chương"))
     mob_lbl_atlas = esc(T("Map", "Bản đồ"))
     mob_lbl_labs = esc(T("7 Labs", "7 Lab"))
     mob_lbl_traps = esc(T("Biases", "Bẫy"))
-    mob_lbl_reader = esc(T("Chapters", "Chương"))
+    mob_lbl_cases = esc(T("36 Cases", "36 Hồ sơ"))
 
     return f"""<!doctype html>
 <html lang="{lang}">
@@ -727,12 +778,12 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
 
       <nav class="site-nav" aria-label="{esc(T("Primary", "Điều hướng chính"))}">
         <button type="button" class="nav-link" data-view="overview" aria-current="page" onclick="switchView('overview', null, true)">{esc(meta["nav"]["overview"])}</button>
-        <button type="button" class="nav-link" data-view="cases" onclick="switchView('cases', null, true)">{esc(meta["nav"]["cases"])}<span class="nav-count">36</span></button>
+        <button type="button" class="nav-link" data-view="reader" onclick="switchView('reader', null, true)">{esc(meta["nav"]["reader"])}</button>
         <button type="button" class="nav-link" data-view="atlas" onclick="switchView('atlas', null, true)">{esc(meta["nav"]["atlas"])}</button>
         <button type="button" class="nav-link" data-view="labs" onclick="switchView('labs', null, true)">{esc(meta["nav"]["labs"])}</button>
         <button type="button" class="nav-link" data-view="traps" onclick="switchView('traps', null, true)">{esc(meta["nav"]["traps"])}</button>
         <button type="button" class="nav-link" data-view="plates" onclick="switchView('plates', null, true)">{esc(meta["nav"]["plates"])}</button>
-        <button type="button" class="nav-link" data-view="reader" onclick="switchView('reader', null, true)">{esc(meta["nav"]["reader"])}</button>
+        <button type="button" class="nav-link" data-view="cases" onclick="switchView('cases', null, true)">{esc(meta["nav"]["cases"])}<span class="nav-count">36</span></button>
       </nav>
 
       <div class="head-tools">
@@ -765,12 +816,15 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
 
   <main class="wrap">
     <!-- ==================================================================
-         VIEW 1: OVERVIEW, COLD-OPEN SYSTEM 1 TEST, 4 FLOORS & MINH'S ARC
+         VIEW 1: OVERVIEW, BOOK BY ĐÀO MINH CHÂU, 4 FLOORS, 9 METHODS & EPILOGUE
          ================================================================== -->
     <section id="view-overview" class="view-section">
       <div class="hero-grid">
         <div>
-          <span class="eyebrow">{esc(meta["hero"]["eyebrow"])}</span>
+          <div class="book-author-banner">
+            {ic_book}
+            <span><strong>{esc(book_meta["banner_kicker"])}:</strong> <cite style="font-weight:800;font-style:italic;color:var(--accent);">{esc(book_meta["book_title"])}</cite> · <strong>{esc(book_meta["author_line"])}</strong></span>
+          </div>
           <h1 id="main-heading" tabindex="-1" class="hero-title">
             {esc(meta["hero"]["title_main"])}<em class="hero-accent">{esc(meta["hero"]["title_accent"])}</em>
           </h1>
@@ -781,26 +835,28 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
           </div>
           <p class="lede">{esc(meta["hero"]["lede"])}</p>
 
-          <div class="edition-ledger" aria-label="{esc(T("Edition scope", "Quy mô ấn bản"))}">
-            <span><strong>36</strong> {esc(T("Real Case Studies", "Hồ sơ Thực chiến"))}</span>
+          <div class="edition-ledger" aria-label="{esc(T("Book & companion scope", "Quy mô sách và ấn bản"))}">
+            <span><strong>3</strong> {esc(T("Book Parts", "Phần Sách"))}</span>
             <span>·</span>
-            <span><strong>9</strong> {esc(T("Scrollytelling Acts", "Chương Scrollytelling"))}</span>
+            <span><strong>9</strong> {esc(T("Thinking Methods", "Phương pháp Tư duy"))}</span>
             <span>·</span>
-            <span><strong>7</strong> {esc(T("Live Simulators", "Phòng Thí nghiệm Sống"))}</span>
-            <span>·</span>
-            <span><strong>29</strong> {esc(T("Cognitive Tools", "Công cụ Tư duy"))}</span>
+            <span><strong>29</strong> {esc(T("Book Tools", "Công cụ Thực hành"))}</span>
             <span>·</span>
             <span><strong>24</strong> {esc(T("Vector Plates", "Bản vẽ Vector"))}</span>
+            <span>·</span>
+            <span><strong>7</strong> {esc(T("Live Labs", "Phòng Thí nghiệm"))}</span>
+            <span>·</span>
+            <span><strong>36</strong> {esc(T("Case Studies", "Hồ sơ Thực tế"))}</span>
           </div>
 
           <div class="cta-row">
-            <button type="button" class="btn-primary" onclick="switchView('cases', null, true)">
-              {ic_briefcase}
-              <span>{esc(T("Explore 36 Real Case Studies →", "Khám phá 36 Hồ sơ Thực tế →"))}</span>
+            <button type="button" class="btn-primary" onclick="switchView('reader', null, true)">
+              {ic_book}
+              <span>{esc(T("Explore the 9 Thinking Methods →", "Khám phá 9 Phương pháp Tư duy →"))}</span>
             </button>
-            <button type="button" class="btn-ghost" onclick="startGuidedTour('awakening-tour')">
-              {ic_play}
-              <span>{esc(T("5-Stop Guided Story", "Hành trình Dẫn chuyện"))}</span>
+            <button type="button" class="btn-ghost" onclick="switchView('atlas', null, true)">
+              {ic_map}
+              <span>{esc(T("29-Tool Method Map", "Bản đồ 29 Công cụ"))}</span>
             </button>
             <button type="button" class="btn-ghost" onclick="switchView('labs', 'builder', true)">
               {ic_sliders}
@@ -812,19 +868,41 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
 
         <div style="max-width:490px;width:100%;justify-self:center;">
           <div class="plate-svg-wrap">{cover_svg_inline}</div>
-          <div class="hero-ray-pills" aria-label="{esc(T("Jump to chapter lens", "Nhảy tới lăng kính chương"))}">
+          <div class="hero-ray-pills" aria-label="{esc(T("Open chapter method in full", "Mở chi tiết phương pháp từng chương"))}">
             {hero_ray_pills_html}
           </div>
         </div>
       </div>
 
-      <!-- SCENE I: 15-SECOND COLD OPEN — CATCH YOUR SYSTEM 1 IN THE ACT -->
+      <!-- SCENE I: ABOUT ĐÀO MINH CHÂU'S BOOK + FOUR FLOORS ARCHITECTURE -->
+      <div class="sec-card" id="sec-floors">
+        <span class="eyebrow" style="color:var(--accent);">{esc(T("Book Architecture · Học Tư Duy by Đào Minh Châu (Hà Nội, 08/01/2026)", "Cấu Trúc Nguyên Bản Cuốn Sách Học Tư Duy · Tác Giả Đào Minh Châu (Hà Nội, 08/01/2026)"))}</span>
+        <h2 style="font-size:26px;margin-block-end:8px;">{esc(book_meta["about_book_title"])}</h2>
+        <p style="color:var(--ink-2);max-width:82ch;font-size:15.5px;">{esc(book_meta["about_book_body"])}</p>
+        <div class="book-parts-grid" style="margin-block-end:22px;">
+          {book_parts_cards_html}
+        </div>
+
+        <hr style="border:none;border-block-start:1px solid var(--line);margin-block:18px;">
+        <h3 style="font-size:21px;margin-block-end:4px;">{esc(meta["floors_heading"])}</h3>
+        <p style="color:var(--ink-2);max-width:74ch;font-size:15px;">{esc(meta["floors_sub"])}</p>
+
+        <div class="floors-list" role="group" aria-label="{esc(meta["floors_heading"])}">
+          {floors_btns}
+        </div>
+        <div id="floorDetail" class="floor-detail" aria-live="polite"></div>
+        <p style="margin-block-start:12px;font-size:14px;color:var(--c-analytical);font-weight:600;">
+          ↺ {esc(meta["simon_loop"])}
+        </p>
+      </div>
+
+      <!-- SCENE II: 15-SECOND COLD OPEN — CATCH YOUR SYSTEM 1 IN THE ACT -->
       <div class="sec-card" id="sec-mirror">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
           <div>
-            <span class="eyebrow" style="color:var(--c-trap);">{esc(T("Prologue · Don’t Take Our Word For It: Test Your Own Intuition First", "Mở màn Tương tác · Đừng Vội Tin Sách: Hãy Thử Phản Xạ Của Chính Bạn Trong 15 Giây"))}</span>
+            <span class="eyebrow" style="color:var(--c-trap);">{esc(T("Chapter 1 Diagnostic · Test Your System 1 Reflex in 15 Seconds", "Trải Nghiệm Chương 1 · Thử Phản Xạ Hệ Thống 1 Của Chính Bạn Trong 15 Giây"))}</span>
             <h2 style="font-size:26px;margin-block-end:4px;">{esc(T("Three 5-second traps where smart minds misfire", "Ba cái bẫy 5 giây khiến trí óc thông minh vẫn sập hầm"))}</h2>
-            <p style="color:var(--ink-2);max-width:72ch;">{esc(T("Pick your honest gut answer on each card below to see Kahneman’s System 1 and Đào Minh Châu’s System 2 antidotes in action.", "Chọn nhanh đáp án trực giác đầu tiên của bạn ở từng thẻ để tận mắt thấy Hệ thống 1 đánh lừa ta ra sao."))}</p>
+            <p style="color:var(--ink-2);max-width:72ch;">{esc(T("Pick your honest gut answer on each card below to see Kahneman’s System 1 and Đào Minh Châu’s System 2 antidotes in action.", "Chọn nhanh đáp án trực giác đầu tiên của bạn ở từng thẻ để tận mắt thấy Hệ thống 1 đánh lừa ta ra sao và cách sách Học Tư Duy hóa giải."))}</p>
           </div>
           <span id="mirrorScoreBadge" class="pill-tag" style="font-family:var(--mono);font-size:13px;padding:6px 12px;">
             {esc(T("System 2 Reflex: 0 / 3 Tested", "Phản xạ Hệ thống 2: 0 / 3 Đã thử"))}
@@ -833,22 +911,22 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
         <div class="mirror-grid">{mirror_cards_html}</div>
       </div>
 
-      <!-- SCENE I-B: SPLIT-SCREEN SCROLLYTELLING FLAGSHIP + MINH'S AGE 22->30 TIMELINE -->
+      <!-- SCENE III: SPLIT-SCREEN SCROLLYTELLING OF ALL 9 BOOK METHODS & ORIGINAL EXAMPLES -->
       <div class="sec-card" id="sec-scrolly">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
           <div>
-            <span class="eyebrow" style="color:var(--accent);">{esc(T("Kinetic Scrollytelling · 9 Lenses, 9 Flashpoints & Minh’s Age 22–30 Journey", "Trải Nghiệm Scrollytelling · 9 Lăng Kính, 9 Bước Ngoặt & Hành Trình Tuổi 22–30 Của Minh"))}</span>
-            <h2 style="font-size:27px;margin-block-end:6px;">{esc(T("Watch the prism refract: 9 chapters, 9 real-world flashpoints, 1 living system", "Chiếc lăng kính 9 tia sáng: 9 chương sách gắn liền 9 bước ngoặt thực chiến"))}</h2>
-            <p style="color:var(--ink-2);max-width:76ch;">{esc(T("Scroll the nine chapter cards on the left—or tap any stop along Minh’s timeline—to morph the live vector illustration, historical case dossier, and protagonist arc.", "Cuộn dọc 9 thẻ chương bên trái—hoặc chọn mốc tuổi của Minh trên thanh thời gian—để biến đổi trực tiếp bản vẽ vector, hồ sơ lịch sử và câu chuyện xuyên suốt."))}</p>
+            <span class="eyebrow" style="color:var(--accent);">{esc(T("9 Chapters of Học Tư Duy · Method Breakdown, Original Book Examples & Minh’s Journey", "9 Chương Sách Học Tư Duy · Bản Chất Từng Phương Pháp, Ví Dụ Trong Sách & Hành Trình Của Minh"))}</span>
+            <h2 style="font-size:27px;margin-block-end:6px;">{esc(T("Walk through all 9 thinking methods & original examples from Đào Minh Châu’s book", "Đi dọc 9 phương pháp tư duy và các ví dụ nguyên bản trong sách Đào Minh Châu"))}</h2>
+            <p style="color:var(--ink-2);max-width:76ch;">{esc(T("Scroll or click any chapter on the left to inspect its visual plate, Đào Minh Châu’s signature book example, and how all 9 methods build one coherent system.", "Cuộn dọc hoặc chọn từng chương bên trái để xem sơ đồ trực quan, ví dụ đặc trưng ngay trong sách của tác giả Đào Minh Châu và mở phần diễn giải chi tiết."))}</p>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button type="button" class="tool-pill" onclick="switchView('reader', null, true)">
+              {ic_book}
+              <span>{esc(T("Read Full 9-Method Deep Dive →", "Đọc Chi Tiết 9 Phương Pháp →"))}</span>
+            </button>
             <button type="button" class="tool-pill" onclick="switchView('plates', null, true)">
               {ic_layers}
               <span>{esc(T("24 Vector Plates →", "24 Bản vẽ Vector →"))}</span>
-            </button>
-            <button type="button" class="tool-pill" onclick="switchView('cases', null, true)">
-              {ic_briefcase}
-              <span>{esc(T("All 36 Case Studies →", "Trọn bộ 36 Hồ sơ →"))}</span>
             </button>
           </div>
         </div>
@@ -870,44 +948,13 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
         </div>
       </div>
 
-      <!-- SCENE I-C: FEATURED REAL-WORLD CASE DOSSIERS SPOTLIGHT -->
-      <div class="sec-card" id="sec-case-spotlight">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-block-end:16px;">
-          <div>
-            <span class="eyebrow" style="color:var(--c-strategic);">{esc(T("Case Study Vault Preview · Theory Tested Against High-Stakes Reality", "Kho Hồ Sơ Thực Chiến · Khi Lý Thuyết Va Chạm Thực Tế Khốc Liệt"))}</span>
-            <h2 style="font-size:26px;margin-block-end:4px;">{esc(T("From ChatGPT courtroom hallucinations to 1902 Hanoi’s tailless rats", "Từ vụ luật sư nộp án lệ giả của ChatGPT đến đàn chuột cụt đuôi Hà Nội 1902"))}</h2>
-            <p style="color:var(--ink-2);max-width:74ch;">{esc(T("Every single chapter is backed by four documented historical, scientific, or business case studies with primary external links.", "Mỗi chương sách đều gắn với 4 vụ việc có thật trong lịch sử, khoa học, y học và kinh doanh kèm liên kết tra cứu hồ sơ gốc."))}</p>
-          </div>
-          <button type="button" class="btn-primary" onclick="switchView('cases', null, true)">
-            {ic_briefcase}
-            <span>{esc(T("Open All 36 Linked Cases →", "Mở Kho 36 Hồ sơ Thực chiến →"))}</span>
-          </button>
-        </div>
-        <div class="cases-grid">{spotlight_cases_html}</div>
-      </div>
-
-      <!-- SCENE II: FOUR FLOORS OF CONSCIOUS REASON -->
-      <div class="sec-card" id="sec-floors">
-        <span class="eyebrow">{esc(T("Act I · The Architectural Stack", "Hồi I · Kiến trúc Ngôi nhà 4 Tầng của Lý trí"))}</span>
-        <h2 style="font-size:26px;margin-block-end:6px;">{esc(meta["floors_heading"])}</h2>
-        <p style="color:var(--ink-2);max-width:74ch;">{esc(meta["floors_sub"])}</p>
-
-        <div class="floors-list" role="group" aria-label="{esc(meta["floors_heading"])}">
-          {floors_btns}
-        </div>
-        <div id="floorDetail" class="floor-detail" aria-live="polite"></div>
-        <p style="margin-block-start:12px;font-size:14px;color:var(--c-analytical);font-weight:600;">
-          ↺ {esc(meta["simon_loop"])}
-        </p>
-      </div>
-
-      <!-- SCENE III: ILLUSTRATED PARABLES & STORIES FROM THE BOOK -->
+      <!-- SCENE IV: ILLUSTRATED PARABLES & STORIES FROM THE BOOK -->
       <div class="sec-card" id="sec-stories">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
           <div>
-            <span class="eyebrow" style="color:var(--c-science);">{esc(T("Illustrated Story Theater · 8 Iconic Parables & Breakthroughs", "Rạp Chuyện Kể Minh Họa · 8 Giai Thoại & Ngụ Ngôn Kinh Điển Trong Sách"))}</span>
-            <h2 style="font-size:25px;margin-block-end:6px;">{esc(T("Stories where a single shift in thinking changed history", "Những câu chuyện nơi một cú xoay góc nhìn làm thay đổi lịch sử"))}</h2>
-            <p style="color:var(--ink-2);max-width:76ch;">{esc(T("Select any story on the left to inspect its bespoke vector illustration, the instinctive trap, and the breakthrough move.", "Chọn từng câu chuyện bên trái để xem tranh minh họa vector, cái bẫy trực giác và bước ngoặt tư duy."))}</p>
+            <span class="eyebrow" style="color:var(--c-science);">{esc(T("Illustrated Parables from Học Tư Duy · 8 Iconic Book Vignettes", "Chuyện Kể & Ngụ Ngôn Nguyên Bản Trong Sách Học Tư Duy · 8 Tranh Minh Họa"))}</span>
+            <h2 style="font-size:25px;margin-block-end:6px;">{esc(T("Eight stories & parables Đào Minh Châu uses to illuminate thinking", "Tám câu chuyện và ngụ ngôn tác giả Đào Minh Châu dùng để soi sáng tư duy"))}</h2>
+            <p style="color:var(--ink-2);max-width:76ch;">{esc(T("Select any story from the manuscript on the left to inspect its bespoke vector illustration, the instinctive trap, and the breakthrough method.", "Chọn từng câu chuyện trong sách ở cột trái để xem tranh minh họa vector, cái bẫy bản năng và bước ngoặt phương pháp."))}</p>
           </div>
           <button type="button" class="tool-pill" onclick="switchView('reader', 'books', true)">
             {ic_book}
@@ -922,23 +969,23 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
         </div>
       </div>
 
-      <!-- SCENE IV: AI ERA PREFACE SYNTHESIS -->
+      <!-- SCENE V: AI ERA PREFACE SYNTHESIS -->
       <div class="sec-card">
         <span class="eyebrow">{esc(meta["ai_era"]["eyebrow"])}</span>
         <h2 style="font-size:24px;margin-block-end:14px;">{esc(meta["ai_era"]["title"])}</h2>
         <div class="cards-grid-4">{ai_cards}</div>
       </div>
 
-      <!-- SCENE V: SIX STRUCTURAL QUESTIONS -->
+      <!-- SCENE VI: SIX STRUCTURAL QUESTIONS -->
       <div class="sec-card">
-        <span class="eyebrow">{esc(T("Act III · Six Paradoxes Through the Book", "Hồi III · Sáu Nghịch lý Xuyên suốt Cuốn sách"))}</span>
+        <span class="eyebrow">{esc(T("Six Paradoxes Through Đào Minh Châu’s Book", "Sáu Câu Hỏi Cốt Lõi Xuyên Suốt Sách Học Tư Duy"))}</span>
         <h2 style="font-size:24px;margin-block-end:6px;">{esc(meta["threads_heading"])}</h2>
         <p style="color:var(--ink-2);margin-block-end:14px;">{esc(meta["threads_sub"])}</p>
         <div class="threads-grid">{threads_btns}</div>
         <div id="threadOut" class="thread-out"></div>
       </div>
 
-      <!-- EPILOGUE BIRD PARABLE + FULL PLATE 24 ILLUSTRATION -->
+      <!-- SCENE VII: EPILOGUE BIRD PARABLE + FULL PLATE 24 ILLUSTRATION -->
       <div class="sec-card" style="background:color-mix(in oklab, var(--accent) 6%, var(--surface));border-color:color-mix(in oklab, var(--accent) 32%, var(--line));">
         <span class="eyebrow" style="color:var(--accent);">{esc(meta["epilogue"]["eyebrow"])}</span>
         <h2 style="font-size:24px;margin-block-end:8px;">{esc(meta["epilogue"]["title"])}</h2>
@@ -946,42 +993,64 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
         <p style="font-size:16px;font-weight:700;color:var(--ink);margin-block-end:16px;">{esc(meta["epilogue"]["moral"])}</p>
         <div class="plate-svg-wrap">{epilogue_svg_inline}</div>
       </div>
+
+      <!-- FINAL SCENE (LAST): EXTENDED REAL-WORLD CASE STUDIES APPENDIX PREVIEW -->
+      <div class="sec-card" id="sec-case-spotlight">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-block-end:16px;">
+          <div>
+            <span class="eyebrow" style="color:var(--c-strategic);">{esc(T("Closing Appendix · Real-World Case Studies (Methods Used & Concrete Results)", "Phụ Lục Thực Chiến Cuối Sách · 36 Hồ Sơ Thực Tế (Nêu Rõ Phương Pháp & Kết Quả)"))}</span>
+            <h2 style="font-size:26px;margin-block-end:4px;">{esc(T("After mastering the book’s 9 methods, see how they decided high-stakes history", "Sau khi nắm vững 9 phương pháp trong sách, đối chiếu vào 36 vụ việc thực tế"))}</h2>
+            <p style="color:var(--ink-2);max-width:74ch;">{esc(T("Every case study explicitly documents which thinking method(s) from Đào Minh Châu’s book were applied (or violated) and the resulting real-world outcome.", "Mỗi hồ sơ tình huống đều ghi rõ phương pháp/công cụ tư duy nào trong sách đã được áp dụng (hoặc bị bỏ quên) và kết quả định lượng thực tế ra sao."))}</p>
+          </div>
+          <button type="button" class="btn-ghost" onclick="switchView('cases', null, true)">
+            {ic_briefcase}
+            <span>{esc(T("Open All 36 Case Studies →", "Mở Kho 36 Hồ sơ Thực tế →"))}</span>
+          </button>
+        </div>
+        <div class="cases-grid">{spotlight_cases_html}</div>
+      </div>
     </section>
 
     <!-- ==================================================================
-         VIEW 1-B: 36 REAL-WORLD CASE STUDIES VAULT (FILTERABLE & LINKED)
+         VIEW 2: 9-METHOD BOOK COMPANION & 29-TOOL MASTER DIRECTORY
          ================================================================== -->
-    <section id="view-cases" class="view-section" hidden>
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-block-end:14px;">
-        <div>
-          <span class="eyebrow" style="color:var(--c-strategic);">{esc(T("Real-World Evidence Vault · 36 Linked Historical, Scientific & Business Dossiers", "Kho Hồ Sơ Thực Chiến · 36 Vụ Việc Lịch Sử, Khoa Học, Công Nghệ & Kinh Doanh"))}</span>
-          <h2 id="heading-cases" tabindex="-1" style="font-size:30px;margin-block-end:6px;">{esc(T("36 moments where thinking methods saved billions, lives, or empires", "36 bước ngoặt nơi phương pháp tư duy định đoạt hàng tỷ đô la và sinh mạng"))}</h2>
-          <p style="color:var(--ink-2);max-width:80ch;">{esc(T("Filter by domain or chapter, search any topic, read the primary external dossier, and jump straight into the matching interactive simulator.", "Lọc theo lĩnh vực hoặc chương sách, tìm kiếm nhanh bằng phím (/), mở tài liệu hồ sơ gốc và nhảy thẳng vào mô phỏng tương ứng."))}</p>
-        </div>
-        <span id="caseCountBadge" class="pill-tag" style="font-family:var(--mono);font-size:13px;padding:7px 14px;">
-          36 / 36
-        </span>
+    <section id="view-reader" class="view-section" hidden>
+      <span class="eyebrow">{esc(T("Book Companion · Học Tư Duy by Đào Minh Châu (Parts I–III, Chapters 1–9)", "Cẩm Nang Chuyên Sâu Theo Sách Học Tư Duy · Tác Giả Đào Minh Châu (Phần I–III, Chương 1–9)"))}</span>
+      <h2 id="heading-reader" tabindex="-1" style="font-size:28px;margin-block-end:6px;">{esc(T("The 9 Thinking Methods Elaborated: Concepts, Tools & Original Book Examples", "Diễn Giải Chi Tiết 9 Phương Pháp Tư Duy: Khái Niệm, Công Cụ & Ví Dụ Trong Sách"))}</h2>
+      <p style="color:var(--ink-2);margin-block-end:18px;">{esc(T("Select any chapter on the left to study Đào Minh Châu’s definitions, guiding principles, step-by-step sub-methods, and original worked examples—with applied case studies at the end of each chapter.", "Chọn từng chương bên trái để đọc trọn vẹn định nghĩa, nguyên lý, quy trình từng công cụ và các ví dụ nguyên bản của tác giả Đào Minh Châu—kèm hồ sơ thực tế ở cuối mỗi chương."))}</p>
+
+      <div class="reader-layout" style="margin-block-end:32px;">
+        <nav class="reader-toc" aria-label="{esc(T("Chapters", "Mục lục Chương"))}">
+          <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-3);padding:4px 10px 8px;">
+            {esc(T("Book Chapters (1–9)", "9 Chương Sách (1–9)"))}
+          </div>
+          {toc_btns}
+        </nav>
+        <div>{chapters_panes}</div>
       </div>
 
-      <div class="atlas-toolbar" role="group" aria-label="{esc(T("Case study domain filters", "Bộ lọc lĩnh vực hồ sơ"))}">
-        {case_cat_pills_html}
+      <h3 style="font-size:22px;margin-block-end:10px;">{esc(T("Master Reference Table of All Thinking Tools in Học Tư Duy", "Bảng Tổng hợp Toàn bộ Các Công cụ Thực hành Tư duy Trong Sách"))}</h3>
+      <div tabindex="0" role="region" aria-labelledby="tools-table-caption" class="table-wrapper">
+        <table class="tools-table" style="--lbl-ch:'{esc(T("Chapter", "Chương"))}';--lbl-when:'{esc(T("When to use", "Khi nào dùng"))}';--lbl-what:'{esc(T("Core mechanism", "Bản chất công cụ"))}';">
+          <caption id="tools-table-caption">{esc(T("Click any row to open its step-by-step protocol, book anchor example, and pitfalls", "Nhấn vào bất kỳ dòng công cụ nào để mở hướng dẫn từng bước, ví dụ trong sách và các lỗi cần tránh"))}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{esc(T("Tool", "Công cụ"))}</th>
+              <th scope="col">{esc(T("Chapter & Pages", "Chương & Trang"))}</th>
+              <th scope="col">{esc(T("When to Use", "Tình huống Áp dụng"))}</th>
+              <th scope="col">{esc(T("How It Works", "Bản chất Vận hành"))}</th>
+            </tr>
+          </thead>
+          <tbody>{table_rows}</tbody>
+        </table>
       </div>
 
-      <div class="atlas-toolbar" style="margin-block-end:20px;">
-        <label for="caseSearch" class="visually-hidden">{esc(T("Search 36 case studies", "Tìm trong 36 hồ sơ"))}</label>
-        <input id="caseSearch" type="search" placeholder="{esc(T("Search 36 cases (/): ChatGPT, Hanoi, Toyota, Boeing, Nobel, Bayes, SVB…", "Tìm hồ sơ (/): ChatGPT, Hà Nội 1902, Toyota, Boeing, Nobel, Bayes, SVB…"))}"
-               oninput="filterCasesVault()" style="padding:9px 14px;border-radius:10px;border:1.5px solid var(--line-2);background:var(--surface);min-width:240px;flex:1;max-width:460px;">
-        <label for="caseChFilter" style="font-family:var(--kicker);font-size:14px;font-weight:700;">{esc(T("Chapter:", "Chương:"))}</label>
-        <select id="caseChFilter" onchange="filterCasesVault(true)" style="padding:9px 12px;border-radius:10px;border:1.5px solid var(--line-2);background:var(--surface);">
-          <option value="all">{esc(T("All 9 Chapters (36 Cases)", "Tất cả 9 Chương (36 Hồ sơ)"))}</option>
-          {ch_options_html}
-        </select>
-      </div>
-
-      <div id="caseEmptyState" class="floor-detail" hidden style="margin-block-end:16px;"></div>
-
-      <div id="casesVaultGrid" class="cases-grid">
-        {all_cases_cards_html}
+      <!-- FULL SUGGESTED BOOKSHELF DIRECTORY (23 LINKED CLASSICS) -->
+      <div class="sec-card" id="sec-bookshelf" style="margin-block-start:28px;">
+        <span class="eyebrow" style="color:var(--accent);">{esc(T("The Thinker’s Library · 23 Classic Books Cited by Đào Minh Châu Across Chapters 1–9", "Thư Viện Đọc Thêm · 23 Tác Phẩm Kinh Điển Được Đào Minh Châu Giới Thiệu Cuối 9 Chương"))}</span>
+        <h3 style="font-size:24px;margin-block-end:6px;">{esc(T("Where to read deeper: Direct links to every book recommended in Học Tư Duy", "Đọc sâu hơn sau cuốn sách này: Liên kết tra cứu trực tiếp từng tác phẩm"))}</h3>
+        <p style="color:var(--ink-2);max-width:76ch;margin-block-end:14px;">{esc(T("Every title recommended by Đào Minh Châu at the close of Chapters 1–9—plus Karl Popper’s Preface touchstone—is linked below on Open Library and Google Books.", "Toàn bộ danh mục sách đọc thêm của tác giả Đào Minh Châu ở cuối 9 chương được tổng hợp kèm lời dẫn và liên kết trực tiếp tới Open Library & Google Books."))}</p>
+        <div class="books-grid">{all_books_cards_html}</div>
       </div>
     </section>
 
@@ -1333,45 +1402,39 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
     </section>
 
     <!-- ==================================================================
-         VIEW 6: 9-CHAPTER SPEC-BOARD READER & 29-TOOL MASTER TABLE
+         VIEW 7 (LAST): 36 REAL-WORLD CASE STUDIES VAULT (METHODS USED & RESULTS)
          ================================================================== -->
-    <section id="view-reader" class="view-section" hidden>
-      <span class="eyebrow">{esc(T("One Spec-Board That Repeats · All 9 Chapters & 29 Tools", "Cấu trúc 7 Phần Thống nhất · Trọn bộ 9 Chương & 29 Công cụ"))}</span>
-      <h2 id="heading-reader" tabindex="-1" style="font-size:28px;margin-block-end:6px;">{esc(T("9-Chapter Illustrated Companion & Master Tool Directory", "Cẩm nang Minh họa 9 Chương & Bảng Tra cứu 29 Công cụ"))}</h2>
-      <p style="color:var(--ink-2);margin-block-end:18px;">{esc(T("Every chapter follows Đào Minh Châu’s unified 7-part architecture paired with Minh’s real-world narrative thread.", "Tất cả các chương đều trình bày theo 7 mục thống nhất gắn liền với mạch truyện thực tế của Minh từ tuổi 22 đến 30."))}</p>
-
-      <div class="reader-layout" style="margin-block-end:32px;">
-        <nav class="reader-toc" aria-label="{esc(T("Chapters", "Mục lục Chương"))}">
-          <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink-3);padding:4px 10px 8px;">
-            {esc(T("Select Chapter (1–9)", "Chọn Chương Sách (1–9)"))}
-          </div>
-          {toc_btns}
-        </nav>
-        <div>{chapters_panes}</div>
+    <section id="view-cases" class="view-section" hidden>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-block-end:14px;">
+        <div>
+          <span class="eyebrow" style="color:var(--c-strategic);">{esc(T("Closing Evidence Vault · 36 Real-World Case Studies Applying Học Tư Duy", "Kho Hồ Sơ Thực Tế Cuối Sách · 36 Vụ Việc Đối Chiếu Các Phương Pháp Tư Duy"))}</span>
+          <h2 id="heading-cases" tabindex="-1" style="font-size:30px;margin-block-end:6px;">{esc(T("36 Case Studies: Methods Used & Concrete Real-World Results", "36 Hồ sơ Thực tế: Phương pháp Tư duy Đã Dùng & Kết quả Định lượng"))}</h2>
+          <p style="color:var(--ink-2);max-width:82ch;">{esc(T("Each case study states explicitly which thinking method(s) and tool(s) from Đào Minh Châu’s book Học Tư Duy were used (or neglected) and the concrete historical, scientific, or business outcome.", "Mỗi hồ sơ đều nêu rõ phương pháp và công cụ tư duy nào trong sách Học Tư Duy của Đào Minh Châu đã được vận dụng (hoặc bị vi phạm) cùng kết quả thực tế cụ thể."))}</p>
+        </div>
+        <span id="caseCountBadge" class="pill-tag" style="font-family:var(--mono);font-size:13px;padding:7px 14px;">
+          36 / 36
+        </span>
       </div>
 
-      <h3 style="font-size:22px;margin-block-end:10px;">{esc(T("Master Reference Table of All 29 Thinking Tools", "Bảng Tổng hợp Toàn bộ 29 Công cụ Thực hành Tư duy"))}</h3>
-      <div tabindex="0" role="region" aria-labelledby="tools-table-caption" class="table-wrapper">
-        <table class="tools-table" style="--lbl-ch:'{esc(T("Chapter", "Chương"))}';--lbl-when:'{esc(T("When to use", "Khi nào dùng"))}';--lbl-what:'{esc(T("Core mechanism", "Bản chất công cụ"))}';">
-          <caption id="tools-table-caption">{esc(T("Click any row to open its step-by-step protocol and pitfalls", "Nhấn vào bất kỳ dòng công cụ nào để mở hướng dẫn từng bước và các lỗi cần tránh"))}</caption>
-          <thead>
-            <tr>
-              <th scope="col">{esc(T("Tool", "Công cụ"))}</th>
-              <th scope="col">{esc(T("Chapter & Pages", "Chương & Trang"))}</th>
-              <th scope="col">{esc(T("When to Use", "Tình huống Áp dụng"))}</th>
-              <th scope="col">{esc(T("How It Works", "Bản chất Vận hành"))}</th>
-            </tr>
-          </thead>
-          <tbody>{table_rows}</tbody>
-        </table>
+      <div class="atlas-toolbar" role="group" aria-label="{esc(T("Case study domain filters", "Bộ lọc lĩnh vực hồ sơ"))}">
+        {case_cat_pills_html}
       </div>
 
-      <!-- FULL SUGGESTED BOOKSHELF DIRECTORY (23 LINKED CLASSICS) -->
-      <div class="sec-card" id="sec-bookshelf" style="margin-block-start:28px;">
-        <span class="eyebrow" style="color:var(--accent);">{esc(T("The Thinker’s Library · 23 Classic Books Cited Across Chapters 1–9", "Thư viện Người Học Tư Duy · 23 Tác phẩm Kinh điển Gợi ý Xuyên suốt 9 Chương"))}</span>
-        <h3 style="font-size:24px;margin-block-end:6px;">{esc(T("Where to read deeper: Direct links to every recommended book", "Đọc sâu hơn sau cuốn sách này: Liên kết tra cứu trực tiếp từng tác phẩm"))}</h3>
-        <p style="color:var(--ink-2);max-width:76ch;margin-block-end:14px;">{esc(T("Every title recommended by Đào Minh Châu—plus Karl Popper’s Preface touchstone—is linked below on Open Library and Google Books.", "Toàn bộ danh mục sách đọc thêm của tác giả Đào Minh Châu ở cuối 9 chương được tổng hợp kèm lời dẫn và liên kết trực tiếp tới Open Library & Google Books."))}</p>
-        <div class="books-grid">{all_books_cards_html}</div>
+      <search class="atlas-toolbar" style="margin-block-end:20px;">
+        <label for="caseSearch" class="visually-hidden">{esc(T("Search 36 case studies", "Tìm trong 36 hồ sơ"))}</label>
+        <input id="caseSearch" type="search" placeholder="{esc(T("Search 36 cases (/): Inversion, 5 Whys, Bayes, Hanoi, Toyota, Nobel…", "Tìm hồ sơ (/): Đảo ngược, 5 Tại sao, Bayes, Hà Nội 1902, Toyota…"))}"
+               oninput="filterCasesVault()" style="padding:9px 14px;border-radius:10px;border:1.5px solid var(--line-2);background:var(--surface);min-width:240px;flex:1;max-width:460px;">
+        <label for="caseChFilter" style="font-family:var(--kicker);font-size:14px;font-weight:700;">{esc(T("Method / Chapter:", "Phương pháp / Chương:"))}</label>
+        <select id="caseChFilter" onchange="filterCasesVault(true)" style="padding:9px 12px;border-radius:10px;border:1.5px solid var(--line-2);background:var(--surface);">
+          <option value="all">{esc(T("All 9 Methods (36 Cases)", "Tất cả 9 Phương pháp (36 Hồ sơ)"))}</option>
+          {ch_options_html}
+        </select>
+      </search>
+
+      <div id="caseEmptyState" class="floor-detail" hidden style="margin-block-end:16px;"></div>
+
+      <div id="casesVaultGrid" class="cases-grid">
+        {all_cases_cards_html}
       </div>
     </section>
   </main>
@@ -1379,18 +1442,18 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
   <!-- THUMB-REACHABLE MOBILE BOTTOM NAVIGATION BAR (<= 1140px) -->
   <nav class="mobile-bottom-nav" aria-label="{esc(T("Mobile Primary Navigation", "Điều hướng di động"))}">
     <button type="button" class="mob-nav-btn" data-view="overview" aria-current="page" onclick="switchView('overview', null, true)">{ic_compass}<span>{mob_lbl_overview}</span></button>
-    <button type="button" class="mob-nav-btn" data-view="cases" onclick="switchView('cases', null, true)">{ic_briefcase}<span>{mob_lbl_cases}</span></button>
+    <button type="button" class="mob-nav-btn" data-view="reader" onclick="switchView('reader', null, true)">{ic_book}<span>{mob_lbl_reader}</span></button>
     <button type="button" class="mob-nav-btn" data-view="atlas" onclick="switchView('atlas', null, true)">{ic_map}<span>{mob_lbl_atlas}</span></button>
     <button type="button" class="mob-nav-btn" data-view="labs" onclick="switchView('labs', null, true)">{ic_flask}<span>{mob_lbl_labs}</span></button>
     <button type="button" class="mob-nav-btn" data-view="traps" onclick="switchView('traps', null, true)">{ic_shield}<span>{mob_lbl_traps}</span></button>
-    <button type="button" class="mob-nav-btn" data-view="reader" onclick="switchView('reader', null, true)">{ic_book}<span>{mob_lbl_reader}</span></button>
+    <button type="button" class="mob-nav-btn" data-view="cases" onclick="switchView('cases', null, true)">{ic_briefcase}<span>{mob_lbl_cases}</span></button>
   </nav>
 
   <footer style="border-block-start:1px solid var(--line);padding:26px 20px;font-size:14px;color:var(--ink-3);">
     <div style="max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
       <div>
-        <strong style="color:var(--ink);" lang="la">Systema Ratio</strong> · {esc(T("Illustrated & Interactive Architecture for", "Hệ thống Minh họa & Tương tác cho sách"))}
-        <em>Học Tư Duy</em> · Đào Minh Châu (Hà Nội, 08/01/2026).
+        <strong style="color:var(--ink);" lang="la">Systema Ratio</strong> · {esc(T("Interactive Companion Based on the Book", "Ấn bản Minh họa & Tương tác Dựa trên Cuốn sách"))}
+        <cite style="font-weight:700;color:var(--ink);">Học Tư Duy</cite> · <strong>Đào Minh Châu</strong> (Hà Nội, 08/01/2026).
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;">
         <a href="index.html" class="tool-pill text-link" style="text-decoration:none;">{esc(T("Bilingual Portal", "Cổng Song ngữ"))}</a>
@@ -1502,15 +1565,15 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
   /* ========================================================================
      2. DIRECTIONAL VIEW TRANSITIONS + TRUE URL HASH HISTORY (`hashchange`)
      ======================================================================== */
-  const VIEWS = ["overview", "cases", "atlas", "labs", "traps", "plates", "reader"];
+  const VIEWS = ["overview", "reader", "atlas", "labs", "traps", "plates", "cases"];
   const VIEW_HEADINGS = {{
     overview: "main-heading",
-    cases: "heading-cases",
+    reader: "heading-reader",
     atlas: "heading-atlas",
     labs: "heading-labs",
     traps: "heading-traps",
     plates: "heading-plates",
-    reader: "heading-reader",
+    cases: "heading-cases",
   }};
   let currentView = "overview";
   let currentChapter = "ch1";
@@ -2744,16 +2807,17 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
     if (out) {{
       out.innerHTML = `
         <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-block-end:6px;">
-          <span class="eyebrow" style="color:${{st.color}};margin:0;">${{L("Active Prism Lens", "Lăng Kính Đang Chiếu")}} · Ch. ${{st.num}}: ${{st.title}}</span>
+          <span class="eyebrow" style="color:${{st.color}};margin:0;">${{L("Active Book Method", "Phương Pháp Trong Sách")}} · Ch. ${{st.num}}: ${{st.title}}</span>
           <span class="badge-mini">${{st.metaphor}}</span>
         </div>
         <div class="plate-svg-wrap" style="margin-block-end:12px;">${{st.svg}}</div>
         <div style="padding:12px 14px;border-radius:10px;background:color-mix(in oklab, ${{st.color}} 9%, var(--surface-2));border:1px solid color-mix(in oklab, ${{st.color}} 34%, var(--line));margin-block-end:10px;">
-          <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:${{st.color}};margin-block-end:2px;">${{L("REAL-WORLD CASE FLASHPOINT", "HỒ SƠ THỰC CHIẾN TIÊU BIỂU")}}</div>
-          <strong class="hd" style="display:block;font-size:16px;margin-block-end:4px;">${{st.case_title}}</strong>
-          <p style="font-size:13.5px;color:var(--ink-2);margin-block-end:8px;">${{st.case_story}}</p>
+          <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:${{st.color}};margin-block-end:2px;">${{L("ORIGINAL EXAMPLE IN ĐÀO MINH CHÂU’S BOOK", "VÍ DỤ MINH HỌA NGUYÊN BẢN TRONG SÁCH ĐÀO MINH CHÂU")}}</div>
+          <strong class="hd" style="display:block;font-size:16px;margin-block-end:4px;">${{st.book_ex_title}}</strong>
+          <p style="font-size:13.5px;color:var(--ink-2);margin-block-end:8px;">${{st.book_ex_body}}</p>
+          <p style="font-size:13px;font-weight:700;color:var(--ink);margin-block-end:10px;">→ ${{st.book_ex_takeaway}}</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-            <a class="ext-book-link" href="${{st.case_url}}" target="_blank" rel="noopener noreferrer"><span>${{st.case_src}}</span> ↗</a>
+            <button type="button" class="tool-pill" onclick="switchView('reader', '${{st.cid}}', true)">${{L("Elaborate Full Method (Ch. " + st.num + ") →", "Đọc Chuyên sâu Phương pháp (Ch. " + st.num + ") →")}}</button>
             <button type="button" class="tool-pill" onclick="jumpTarget('${{st.lab}}')">${{L("Try Matching Lab →", "Thử Mô phỏng →")}}</button>
           </div>
         </div>
@@ -2791,6 +2855,37 @@ def render_edition(lang: str, meta: dict, chapters: list, tools: list, pathways:
     }}, {{ rootMargin: "-22% 0px -38% 0px", threshold: [0.25, 0.55, 0.8] }});
     document.querySelectorAll(".scrolly-step").forEach(el => scObserver.observe(el));
   }}
+
+  /* --- INVOKER COMMAND `--toggle-all` FOR BOOK METHOD ACCORDIONS (`mwg` `accordion`) --- */
+  function toggleAccordionDetails(accEl, btn) {{
+    if (!accEl || !btn) return;
+    const expand = btn.getAttribute("aria-expanded") !== "true";
+    for (const dt of accEl.querySelectorAll(":scope > details")) {{
+      dt.open = expand;
+    }}
+    btn.setAttribute("aria-expanded", String(expand));
+  }}
+  document.addEventListener("command", (event) => {{
+    if (event.command !== "--toggle-all") return;
+    toggleAccordionDetails(event.target, event.source);
+  }}, {{ capture: true }});
+  if (!Object.hasOwn(HTMLButtonElement.prototype, "commandForElement")) {{
+    document.addEventListener("click", (event) => {{
+      const btn = event.target.closest('[command="--toggle-all"]');
+      if (!btn) return;
+      const targetId = btn.getAttribute("commandfor");
+      toggleAccordionDetails(targetId ? document.getElementById(targetId) : null, btn);
+    }});
+  }}
+  document.addEventListener("toggle", (event) => {{
+    if (!(event.target instanceof HTMLDetailsElement)) return;
+    const acc = event.target.parentElement;
+    if (!acc || !acc.classList.contains("method-accordion")) return;
+    const btn = acc.querySelector('[command="--toggle-all"]');
+    if (!btn) return;
+    const items = acc.querySelectorAll(":scope > details");
+    btn.setAttribute("aria-expanded", String(Array.prototype.every.call(items, d => d.open)));
+  }}, {{ capture: true }});
 
   /* --- 36 REAL-WORLD CASE STUDIES VAULT FILTER --- */
   let activeCaseCat = "all";

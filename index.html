@@ -11,7 +11,7 @@
       document.querySelector('meta[name="color-scheme"]').content = localStorage.getItem("sr-color-scheme") ?? "light dark";
     } catch (e) {}
   </script>
-  <title>Systema Ratio · Học Tư Duy / Learning How to Think — Kinetic Atlas &amp; 36 Case Studies</title>
+  <title>Systema Ratio · Based on the Book Học Tư Duy (Learning How to Think) by Đào Minh Châu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600..900;1,9..144,600..800&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..600&display=swap" rel="stylesheet">
@@ -651,9 +651,12 @@ body:not(.teach-mode) .teach-only { display: none !important; }
 
 .mobile-bottom-nav { display: none; }
 .lang-lbl-short { display: none; }
-@media (max-width: 1640px) {
-  .brand-sub, .teach-lbl-long { display: none; }
+@media (max-width: 1520px) {
+  .teach-lbl-long { display: none; }
   .nav-link { padding: 7px 10px; font-size: 13px; }
+}
+@media (max-width: 1340px) {
+  .brand-sub { display: none; }
 }
 @media (max-width: 1220px) {
   .site-nav { display: none; }
@@ -799,6 +802,8 @@ body:not(.teach-mode) .teach-only { display: none !important; }
   padding: 28px;
   margin-block-end: 28px;
   box-shadow: var(--shadow);
+  max-inline-size: 100%;
+  min-inline-size: 0;
 }
 @media (max-width: 680px) {
   .sec-card { padding: 18px; margin-block-end: 20px; }
@@ -815,7 +820,7 @@ body:not(.teach-mode) .teach-only { display: none !important; }
   margin-block-end: 34px;
 }
 @media (max-width: 1024px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
 }
 .hero-title {
   font-size: clamp(2.35rem, 4.6vw, 3.85rem);
@@ -954,7 +959,7 @@ body:not(.teach-mode) .teach-only { display: none !important; }
   margin-block-start: 18px;
 }
 @media (max-width: 980px) {
-  .scrolly-layout { grid-template-columns: 1fr; }
+  .scrolly-layout { grid-template-columns: minmax(0, 1fr); }
 }
 .scrolly-steps {
   display: grid;
@@ -1144,6 +1149,163 @@ body:not(.teach-mode) .teach-only { display: none !important; }
   background: color-mix(in oklab, var(--cc, var(--accent)) 9%, var(--surface-2));
   border: 1px solid color-mix(in oklab, var(--cc, var(--accent)) 32%, var(--line));
   font-size: 13.5px;
+}
+.case-meta-dl {
+  margin: 0 0 12px;
+  display: grid;
+  gap: 8px;
+}
+.case-meta-row {
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  border: 1px solid var(--line-2);
+  font-size: 13.5px;
+}
+.case-meta-row.case-result-row {
+  background: color-mix(in oklab, var(--c-systems) 7%, var(--surface-2));
+  border-color: color-mix(in oklab, var(--c-systems) 30%, var(--line));
+}
+.case-meta-row dt {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--cc, var(--accent));
+  margin-block-end: 3px;
+}
+.case-meta-row.case-result-row dt {
+  color: var(--c-systems);
+}
+.case-meta-row dd {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.48;
+}
+
+/* Book Attribution Banner & 3-Part Roadmap */
+.book-author-banner {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 8px 14px;
+  margin-block-end: 12px;
+  border-radius: var(--r-md);
+  background: color-mix(in oklab, var(--accent) 9%, var(--surface));
+  border: 1.5px solid color-mix(in oklab, var(--accent) 36%, var(--line));
+  font-size: 13.5px;
+  color: var(--ink);
+}
+.book-parts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 12px;
+  margin-block-start: 14px;
+}
+.book-part-card {
+  padding: 15px 16px;
+  border-radius: var(--r-md);
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+}
+
+/* Deep-Dive Book Sub-Method Accordion (`mwg` `accordion` compliant) */
+.method-accordion {
+  display: grid;
+  gap: 10px;
+  margin-block: 10px 18px;
+}
+.method-acc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+[command="--toggle-all"][aria-expanded="true"] .expand,
+[command="--toggle-all"][aria-expanded="false"] .collapse {
+  display: none;
+}
+details.method-detail {
+  background: var(--bg);
+  border: 1.5px solid var(--line-2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+details.method-detail[open] {
+  background: var(--surface);
+  border-color: color-mix(in oklab, var(--mc-col, var(--accent)) 52%, var(--line));
+}
+details.method-detail > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  min-block-size: 46px;
+  cursor: pointer;
+  font-family: var(--kicker);
+  font-weight: 700;
+  font-size: 15.5px;
+  color: var(--ink);
+  background: var(--surface-2);
+}
+details.method-detail > summary::-webkit-details-marker {
+  display: none;
+}
+details.method-detail > summary:hover {
+  background: var(--surface-3);
+}
+details.method-detail > summary::before {
+  content: "▾";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.1em;
+  block-size: 1.1em;
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--mc-col, var(--accent));
+  rotate: -90deg;
+}
+details.method-detail[open] > summary::before {
+  rotate: 0deg;
+}
+@media (prefers-reduced-motion: no-preference) {
+  details.method-detail > summary::before {
+    transition: rotate 0.2s ease;
+  }
+}
+details.method-detail::details-content {
+  interpolate-size: allow-keywords;
+  overflow: clip;
+  contain: layout;
+}
+details.method-detail:not([open])::details-content {
+  block-size: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  details.method-detail::details-content {
+    transition: block-size 0.24s ease-in-out, content-visibility 0.24s ease-in-out, display 0.24s ease-in-out;
+    transition-behavior: allow-discrete;
+  }
+}
+.method-detail-body {
+  padding: 16px 18px;
+  display: grid;
+  gap: 10px;
+  font-size: 14.5px;
+  border-block-start: 1px solid var(--line);
+}
+.book-example-callout {
+  padding: 12px 14px;
+  border-radius: var(--r-sm);
+  background: color-mix(in oklab, var(--mc-col, var(--accent)) 8%, var(--surface-2));
+  border: 1px solid color-mix(in oklab, var(--mc-col, var(--accent)) 32%, var(--line));
+  font-size: 14px;
 }
 
 /* Cold-Open 15-Second Mirror Traps */
@@ -1907,6 +2069,7 @@ dialog.sr-dialog::backdrop {
           <i style="background:var(--m-strategic)"></i><i style="background:var(--m-prob)"></i><i style="background:var(--m-science)"></i>
         </span>
         <span lang="la">Systema Ratio</span>
+        <span class="brand-sub">Book by Đào Minh Châu</span>
       </span>
       <div class="head-tools">
         <a class="tool-pill" href="vi.html" lang="vi">Tiếng Việt</a>
@@ -1918,24 +2081,26 @@ dialog.sr-dialog::backdrop {
     </div>
   </header>
   <main class="wrap" style="max-width:1200px;">
-    <div style="text-align:center;max-width:76ch;margin:4px auto 0;">
-      <span class="eyebrow">Kinetic Editorial Edition · Systema Intelligentiae × Sci-Fi AI Atlas</span>
+    <div style="text-align:center;max-width:78ch;margin:4px auto 0;">
+      <div class="book-author-banner" style="justify-content:center;">
+        <span><strong>Official Interactive Companion to the Book:</strong> <cite style="font-weight:800;font-style:italic;color:var(--accent);">Học Tư Duy (Learning How to Think)</cite> · <strong>By Author Đào Minh Châu</strong> (Hà Nội, 08/01/2026 · 171 Pages)</span>
+      </div>
       <h1 id="portal-heading" tabindex="-1" style="font-size:clamp(2.4rem,4.8vw,3.85rem);font-weight:800;margin-block-end:12px;">
-        <span lang="la">Systema Ratio</span> · <em class="hero-accent">Living Casebook</em>
+        <span lang="la">Systema Ratio</span> · <em class="hero-accent">Học Tư Duy</em>
       </h1>
       <p style="font-size:17.5px;color:var(--ink-2);">
-        Split-screen scrollytelling, <strong>36 linked real-world case studies</strong>, 7 live cognitive simulators, Socratic AI sparring, 24 vector plates &amp; 23 classic books for
-        <strong>Đào Minh Châu’s <em>Học Tư Duy</em> (2026)</strong>.
+        In-depth elaboration of all <strong>9 Thinking Methods</strong>, guiding principles, step-by-step tools, and <strong>original worked examples</strong> from
+        <strong>Đào Minh Châu’s book <cite>Học Tư Duy</cite></strong>—paired with 24 vector plates, 7 live simulators, and a closing vault of 36 case studies (with explicit methods used &amp; concrete results).
       </p>
     </div>
 
     <div class="portal-grid">
       <div class="portal-card" lang="vi">
         <div>
-          <span class="pill-tag" style="color:var(--accent);">Ấn bản Tiếng Việt Hiện Đại · VI</span>
+          <span class="pill-tag" style="color:var(--accent);">Ấn bản Tiếng Việt · Sách của Đào Minh Châu</span>
           <h2 style="font-size:27px;margin-block-end:8px;">Hệ Thống Lý Trí · Học Tư Duy</h2>
           <p style="color:var(--ink-2);font-size:15px;margin-block-end:16px;">
-            Trải nghiệm scrollytelling 9 lăng kính gắn liền tuổi 22–30 của Minh, kho 36 hồ sơ tình huống thực chiến có liên kết gốc, 7 phòng thí nghiệm sống, lệnh AI phản biện Socratic và 24 bản vẽ vector chuẩn in ấn.
+            Diễn giải chi tiết trọn bộ 9 phương pháp tư duy (Phần I–III), các nguyên lý, quy trình từng công cụ và toàn bộ ví dụ nguyên bản trong sách <em>Học Tư Duy</em> của tác giả <strong>Đào Minh Châu</strong>—kèm 24 bản vẽ vector, 7 mô phỏng sống và phụ lục 36 hồ sơ thực tế ở phần cuối.
           </p>
           <a class="portal-cov-link plate-svg-wrap" href="vi.html" aria-label="Mở Ấn bản Tiếng Việt"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 620" role="img" aria-label="HỌC TƯ DUY"><title>HỌC TƯ DUY</title><rect x="0" y="0" width="640" height="620" rx="12" fill="var(--bg, #f5f6fb)"/>
     <rect x="20" y="16" width="600" height="588" rx="14" fill="#0e1022" stroke="#2a2f52" stroke-width="2"/>
@@ -1976,16 +2141,16 @@ dialog.sr-dialog::backdrop {
         </div>
         <div style="display:grid;gap:8px;">
           <a class="btn-primary" href="vi.html" style="justify-content:center;">Mở Ấn bản Tiếng Việt (vi.html) →</a>
-          <a class="btn-ghost" href="vi.html#cases" style="justify-content:center;">Vào thẳng Kho 36 Hồ sơ Thực chiến →</a>
+          <a class="btn-ghost" href="vi.html#reader" style="justify-content:center;">Đọc sâu 9 Phương pháp Tư duy trong Sách →</a>
         </div>
       </div>
 
       <div class="portal-card" lang="en">
         <div>
-          <span class="pill-tag" style="color:var(--c-critical);">International English Edition · EN</span>
+          <span class="pill-tag" style="color:var(--c-critical);">English Edition · Book by Đào Minh Châu</span>
           <h2 style="font-size:27px;margin-block-end:8px;">Systema Ratio · Learning How to Think</h2>
           <p style="color:var(--ink-2);font-size:15px;margin-block-end:16px;">
-            Full 9-chapter split-screen scrollytelling, 36 linked historical &amp; business case dossiers, 7 hands-on simulators (with 1-page PDF Decision Sheet &amp; Socratic AI Sparring), 24 vector plates, and 23 classic books.
+            Complete chapter-by-chapter elaboration of all 9 thinking methods, sub-method protocols, and authentic examples from <strong>Đào Minh Châu’s <em>Học Tư Duy</em></strong>—accompanied by 24 vector plates, 7 hands-on laboratories, and 36 real-world case studies (methods used &amp; outcomes) at the close.
           </p>
           <a class="portal-cov-link plate-svg-wrap" href="en.html" aria-label="Open English Edition"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 620" role="img" aria-label="LEARNING HOW TO THINK"><title>LEARNING HOW TO THINK</title><rect x="0" y="0" width="640" height="620" rx="12" fill="var(--bg, #f5f6fb)"/>
     <rect x="20" y="16" width="600" height="588" rx="14" fill="#0e1022" stroke="#2a2f52" stroke-width="2"/>
@@ -2026,7 +2191,7 @@ dialog.sr-dialog::backdrop {
         </div>
         <div style="display:grid;gap:8px;">
           <a class="btn-primary" href="en.html" style="justify-content:center;">Open English Edition (en.html) →</a>
-          <a class="btn-ghost" href="en.html#cases" style="justify-content:center;">Jump to 36 Real Case Studies →</a>
+          <a class="btn-ghost" href="en.html#reader" style="justify-content:center;">Explore All 9 Book Methods in Detail →</a>
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ def build_portal(cov_en: str, cov_vi: str) -> str:
       document.querySelector('meta[name="color-scheme"]').content = localStorage.getItem("sr-color-scheme") ?? "light dark";
     }} catch (e) {{}}
   </script>
-  <title>Systema Ratio · Học Tư Duy / Learning How to Think — Kinetic Atlas &amp; 36 Case Studies</title>
+  <title>Systema Ratio · Based on the Book Học Tư Duy (Learning How to Think) by Đào Minh Châu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600..900;1,9..144,600..800&family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..600&display=swap" rel="stylesheet">
@@ -76,6 +76,7 @@ def build_portal(cov_en: str, cov_vi: str) -> str:
           <i style="background:var(--m-strategic)"></i><i style="background:var(--m-prob)"></i><i style="background:var(--m-science)"></i>
         </span>
         <span lang="la">Systema Ratio</span>
+        <span class="brand-sub">Book by Đào Minh Châu</span>
       </span>
       <div class="head-tools">
         <a class="tool-pill" href="vi.html" lang="vi">Tiếng Việt</a>
@@ -87,45 +88,47 @@ def build_portal(cov_en: str, cov_vi: str) -> str:
     </div>
   </header>
   <main class="wrap" style="max-width:1200px;">
-    <div style="text-align:center;max-width:76ch;margin:4px auto 0;">
-      <span class="eyebrow">Kinetic Editorial Edition · Systema Intelligentiae × Sci-Fi AI Atlas</span>
+    <div style="text-align:center;max-width:78ch;margin:4px auto 0;">
+      <div class="book-author-banner" style="justify-content:center;">
+        <span><strong>Official Interactive Companion to the Book:</strong> <cite style="font-weight:800;font-style:italic;color:var(--accent);">Học Tư Duy (Learning How to Think)</cite> · <strong>By Author Đào Minh Châu</strong> (Hà Nội, 08/01/2026 · 171 Pages)</span>
+      </div>
       <h1 id="portal-heading" tabindex="-1" style="font-size:clamp(2.4rem,4.8vw,3.85rem);font-weight:800;margin-block-end:12px;">
-        <span lang="la">Systema Ratio</span> · <em class="hero-accent">Living Casebook</em>
+        <span lang="la">Systema Ratio</span> · <em class="hero-accent">Học Tư Duy</em>
       </h1>
       <p style="font-size:17.5px;color:var(--ink-2);">
-        Split-screen scrollytelling, <strong>36 linked real-world case studies</strong>, 7 live cognitive simulators, Socratic AI sparring, 24 vector plates &amp; 23 classic books for
-        <strong>Đào Minh Châu’s <em>Học Tư Duy</em> (2026)</strong>.
+        In-depth elaboration of all <strong>9 Thinking Methods</strong>, guiding principles, step-by-step tools, and <strong>original worked examples</strong> from
+        <strong>Đào Minh Châu’s book <cite>Học Tư Duy</cite></strong>—paired with 24 vector plates, 7 live simulators, and a closing vault of 36 case studies (with explicit methods used &amp; concrete results).
       </p>
     </div>
 
     <div class="portal-grid">
       <div class="portal-card" lang="vi">
         <div>
-          <span class="pill-tag" style="color:var(--accent);">Ấn bản Tiếng Việt Hiện Đại · VI</span>
+          <span class="pill-tag" style="color:var(--accent);">Ấn bản Tiếng Việt · Sách của Đào Minh Châu</span>
           <h2 style="font-size:27px;margin-block-end:8px;">Hệ Thống Lý Trí · Học Tư Duy</h2>
           <p style="color:var(--ink-2);font-size:15px;margin-block-end:16px;">
-            Trải nghiệm scrollytelling 9 lăng kính gắn liền tuổi 22–30 của Minh, kho 36 hồ sơ tình huống thực chiến có liên kết gốc, 7 phòng thí nghiệm sống, lệnh AI phản biện Socratic và 24 bản vẽ vector chuẩn in ấn.
+            Diễn giải chi tiết trọn bộ 9 phương pháp tư duy (Phần I–III), các nguyên lý, quy trình từng công cụ và toàn bộ ví dụ nguyên bản trong sách <em>Học Tư Duy</em> của tác giả <strong>Đào Minh Châu</strong>—kèm 24 bản vẽ vector, 7 mô phỏng sống và phụ lục 36 hồ sơ thực tế ở phần cuối.
           </p>
           <a class="portal-cov-link plate-svg-wrap" href="vi.html" aria-label="Mở Ấn bản Tiếng Việt">{cov_vi}</a>
         </div>
         <div style="display:grid;gap:8px;">
           <a class="btn-primary" href="vi.html" style="justify-content:center;">Mở Ấn bản Tiếng Việt (vi.html) →</a>
-          <a class="btn-ghost" href="vi.html#cases" style="justify-content:center;">Vào thẳng Kho 36 Hồ sơ Thực chiến →</a>
+          <a class="btn-ghost" href="vi.html#reader" style="justify-content:center;">Đọc sâu 9 Phương pháp Tư duy trong Sách →</a>
         </div>
       </div>
 
       <div class="portal-card" lang="en">
         <div>
-          <span class="pill-tag" style="color:var(--c-critical);">International English Edition · EN</span>
+          <span class="pill-tag" style="color:var(--c-critical);">English Edition · Book by Đào Minh Châu</span>
           <h2 style="font-size:27px;margin-block-end:8px;">Systema Ratio · Learning How to Think</h2>
           <p style="color:var(--ink-2);font-size:15px;margin-block-end:16px;">
-            Full 9-chapter split-screen scrollytelling, 36 linked historical &amp; business case dossiers, 7 hands-on simulators (with 1-page PDF Decision Sheet &amp; Socratic AI Sparring), 24 vector plates, and 23 classic books.
+            Complete chapter-by-chapter elaboration of all 9 thinking methods, sub-method protocols, and authentic examples from <strong>Đào Minh Châu’s <em>Học Tư Duy</em></strong>—accompanied by 24 vector plates, 7 hands-on laboratories, and 36 real-world case studies (methods used &amp; outcomes) at the close.
           </p>
           <a class="portal-cov-link plate-svg-wrap" href="en.html" aria-label="Open English Edition">{cov_en}</a>
         </div>
         <div style="display:grid;gap:8px;">
           <a class="btn-primary" href="en.html" style="justify-content:center;">Open English Edition (en.html) →</a>
-          <a class="btn-ghost" href="en.html#cases" style="justify-content:center;">Jump to 36 Real Case Studies →</a>
+          <a class="btn-ghost" href="en.html#reader" style="justify-content:center;">Explore All 9 Book Methods in Detail →</a>
         </div>
       </div>
     </div>

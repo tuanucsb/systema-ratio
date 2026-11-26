@@ -7,31 +7,31 @@ META_VI = {
     "other_href": "en.html",
     "other_label": "English",
     "lang_badge": "VI",
-    "site_title": "Systema Ratio · Hệ Thống Lý Trí — Bản Đồ Sống & 36 Hồ Sơ Thực Chiến (Học Tư Duy)",
+    "site_title": "Systema Ratio · Dựa trên cuốn sách Học Tư Duy của tác giả Đào Minh Châu",
     "brand_name": "Systema Ratio",
-    "brand_sub": "Học Tư Duy · 2026",
+    "brand_sub": "Sách của Đào Minh Châu",
     "skip_text": "Chuyển đến nội dung chính",
     "nav": {
-        "overview": "Mạch truyện",
-        "cases": "Hồ sơ Thực tế",
+        "overview": "Tổng quan",
+        "reader": "9 Phương pháp",
         "atlas": "Bản đồ",
         "labs": "7 Mô phỏng",
         "traps": "Thiên kiến",
         "plates": "24 Bản vẽ",
-        "reader": "9 Chương",
+        "cases": "Hồ sơ Thực tế",
     },
     "depth_label": "Góc Giảng dạy",
     "depth_badge": "GIÁO VIÊN",
     "theme_light": "Chuyển sang giao diện sáng",
     "theme_dark": "Chuyển sang giao diện tối",
     "hero": {
-        "eyebrow": "Ấn Bản Tương Tác Hiện Đại & Kho Hồ Sơ Thực Chiến · Sách Học Tư Duy (Đào Minh Châu, 2026)",
-        "title_main": "Đánh thức tư duy sắc bén ",
-        "title_accent": "giữa kỷ nguyên AI.",
+        "eyebrow": "Ấn Bản Tương Tác & Minh Họa Dựa Trên Sách Học Tư Duy · Tác Giả Đào Minh Châu (2026)",
+        "title_main": "Học Tư Duy: ",
+        "title_accent": "Kiến trúc 9 Phương pháp Lý trí.",
         "lede": (
-            "Đừng học tư duy như học thuộc lòng lý thuyết khô khan! Từ cú sập 4,3 tỷ USD của J.C. Penney, 6 án lệ giả do ChatGPT bịa ra, "
-            "vụ săn đuôi chuột Hà Nội năm 1902 đến lỗ đạn máy bay của Abraham Wald: mọi bước ngoặt lịch sử đều bắt đầu từ một cú xoay phương pháp. "
-            "Khám phá trọn bộ 9 chương sách qua scrollytelling sống động, 36 hồ sơ thực tế có liên kết gốc, 7 phòng thí nghiệm sống và 24 bản vẽ vector."
+            "Ấn bản minh họa và tương tác chuyên sâu dựa trên cuốn sách Học Tư Duy của tác giả Đào Minh Châu (Hà Nội, 08/01/2026, 171 trang). "
+            "Trình bày tường tận khái niệm, nguyên lý, công cụ từng bước và toàn bộ ví dụ nguyên bản trong sách qua Phần I (Tư duy Có ý thức), "
+            "Phần II (Sáng tạo, Phản biện, Phân tích, Logic) và Phần III (Hệ thống, Chiến lược, Xác suất, Khoa học)—kèm 7 phòng thí nghiệm sống và 36 hồ sơ thực tế ở phần cuối."
         ),
         "cta_primary": "Mở Bản đồ 29 Công cụ →",
         "cta_secondary": "Vào 7 Phòng Thí nghiệm",

@@ -7,31 +7,31 @@ META_EN = {
     "other_href": "vi.html",
     "other_label": "Tiếng Việt",
     "lang_badge": "EN",
-    "site_title": "Systema Ratio · Learning How to Think (Kinetic Atlas & 36 Case Studies)",
+    "site_title": "Systema Ratio · Based on the Book Học Tư Duy (Learning How to Think) by Đào Minh Châu",
     "brand_name": "Systema Ratio",
-    "brand_sub": "Đào Minh Châu · 2026",
+    "brand_sub": "Book by Đào Minh Châu",
     "skip_text": "Skip to main content",
     "nav": {
-        "overview": "Story",
-        "cases": "Case Studies",
+        "overview": "Overview",
+        "reader": "9 Methods",
         "atlas": "Method Map",
         "labs": "7 Labs",
         "traps": "Biases",
         "plates": "24 Plates",
-        "reader": "9 Chapters",
+        "cases": "Case Studies",
     },
     "depth_label": "Educator lens",
     "depth_badge": "TEACH",
     "theme_light": "Switch to light theme",
     "theme_dark": "Switch to dark theme",
     "hero": {
-        "eyebrow": "Kinetic Editorial Atlas & Casebook · Đào Minh Châu’s Học Tư Duy (2026)",
-        "title_main": "Upgrade how your mind ",
-        "title_accent": "breaks open reality.",
+        "eyebrow": "Based on the Book Học Tư Duy (Learning How to Think) · By Author Đào Minh Châu (2026)",
+        "title_main": "Learning How to Think: ",
+        "title_accent": "9 Methods of Conscious Reason.",
         "lede": (
-            "Textbooks make thinking feel dry. Real life never does: a $4.3B retail pricing crash, six ChatGPT-invented lawsuits, "
-            "colonial Hanoi’s 1902 rat bounty backfire, and Abraham Wald’s missing bullet holes all turned on one shift in method. "
-            "Experience Đào Minh Châu’s 9-chapter craft through live scrollytelling, 36 linked real-world case dossiers, 7 hands-on labs, and 24 vector plates."
+            "An interactive illustrated companion to Đào Minh Châu’s book Học Tư Duy (Hà Nội, 2026, 171 pp.). "
+            "Explore every thinking method, guiding principle, step-by-step tool, and original book example across Part I (Conscious Thinking), "
+            "Part II (Creative, Critical, Analytical & Logical Thinking), and Part III (Systems, Strategic, Probabilistic & Scientific Thinking)—followed by 7 live simulators and 36 real-world case studies."
         ),
         "cta_primary": "Explore 29-Tool Map →",
         "cta_secondary": "Open 7 Thinking Labs",

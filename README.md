@@ -1,19 +1,21 @@
-# Systema Ratio · Hệ Thống Lý Trí (*Học Tư Duy* / *Learning How to Think*)
+# Systema Ratio · Hệ Thống Lý Trí — Based on the Book *Học Tư Duy* by Đào Minh Châu
+
+**Official Interactive & Illustrated Companion to the Book *Học Tư Duy* (*Learning How to Think*, Hà Nội, 08/01/2026, 171 pp.) by Author Đào Minh Châu**
 
 **Live Web Editions:**
 - **Bilingual Gateway Portal:** https://tuanucsb.github.io/systema-ratio/
 - **English Edition (`en.html`):** https://tuanucsb.github.io/systema-ratio/en.html
 - **Ấn bản Tiếng Việt (`vi.html`):** https://tuanucsb.github.io/systema-ratio/vi.html
 
-**Systema Ratio** (*Hệ Thống Lý Trí*) is an interactive architectural casebook and vector illustration suite for **Đào Minh Châu’s *Học Tư Duy* (*Learning How to Think*, Hà Nội, 2026)**—combining the field-guide color and editorial architecture of *Systema Intelligentiae* with the graph-and-inspector workspace of *Sci-Fi AI Atlas*.
+## Book Structure & Interactive Highlights
 
-## Highlights
-
-- **Split-Screen 9-Chapter Scrollytelling**: Walks through all 9 chapters alongside real-world flashpoints and Minh’s Age 22–30 decision timeline, dynamically morphing a live 9-beam prism stage.
-- **36 Linked Real-World Case Studies (`#cases`)**: Filterable historical, scientific, aviation, legal, and AI-era case dossiers (*Mata v. Avianca* ChatGPT fake citations, J.C. Penney’s $4.3B anchoring crash, 1902 Hanoi’s Cobra-Effect rat bounty, Abraham Wald’s WWII bombers, Toyota Andon, Shell 1973 scenarios, USS *Scorpion* Bayesian search, Eddington’s 1919 eclipse) linked to primary external sources.
-- **29-Tool Interactive Dependency Cladogram (`#atlas`)**: Keyboard-navigable 3-part method map with upstream prerequisites, downstream unlocks, and 4 guided cross-view Sagas.
-- **7 Live Cognitive Laboratories (`#labs`)**: Paul–Elder 8-Element Octagon, Abraham Wald Survivorship Inversion, Systems Loops & Delay `τ` Simulator, 5 Game Theory Matrices, Bayesian 100-Grid & Black-Swan EV, 7-Step Scientific Convergence Reactor, plus the **Personal Decision Stress-Tester** (1-Page PDF Decision Sheet & Socratic AI Red-Team Prompt Generator).
-- **48 Standalone Vector Book Plates (`plates/en/*.svg` & `plates/vi/*.svg`) & 23 Classic Books**: Publication-ready bilingual vector illustrations and curated book spine cards.
+1. **Full Elaboration of All 9 Thinking Methods (`#reader`)**:
+   - **Part I · Foundations of Thinking (`Ch. 1`, pp. 10–22)**: Essence of symbolic/rational thought, Kahneman’s System 1 vs. System 2, Simon’s recognition loop, 10 cognitive biases paired with Vietnamese proverbs, and Paul & Elder’s 8-Element conscious frame.
+   - **Part II · Four Basic Thinking Methods (`Ch. 2–5`, pp. 23–100)**: In-depth definitions, principles, protocols, and original book examples for **Creative Thinking**, **Critical Thinking**, **Analytical Thinking**, and **Logical Thinking**.
+   - **Part III · Four Advanced Thinking Methods (`Ch. 6–9`, pp. 101–170) & Epilogue (`p. 171`)**: Full chapter elaborations and worked examples from the manuscript for **Systems Thinking**, **Strategic Thinking**, **Probabilistic Thinking**, and **Scientific Thinking**, culminating in the closing parable of the living bird in your hands.
+2. **29-Tool Interactive Dependency Cladogram (`#atlas`) & 7 Live Cognitive Laboratories (`#labs`)**: Keyboard-navigable method network plus interactive simulators for the 8-Element Octagon, Abraham Wald’s Bombers, Systems Loops & Delays, 5 Game Theory Matrices, Bayesian 100-Grid & EV, 7-Step Scientific Convergence, and the Personal Decision Stress-Tester.
+3. **48 Standalone Vector Book Plates (`plates/en/*.svg` & `plates/vi/*.svg`) & 23 Recommended Classics**.
+4. **Closing Vault of 36 Real-World Case Studies (`#cases`)**: Placed as the final section, with every case study explicitly documenting the **Method(s) Used** from Đào Minh Châu’s book and the **Concrete Real-World Result & Outcome**.
 
 ## Rebuild Locally
 
